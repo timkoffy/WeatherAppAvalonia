@@ -13,4 +13,7 @@
         Height="894"
         Background="{Binding ColorBackGroundId}">
         <views:MainView />
+        
 </Window>
+
+

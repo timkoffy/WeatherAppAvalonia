@@ -1,0 +1,23 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:WeatherAppAvalonia.ViewModels"
+        x:DataType="vm:MainViewModel">
+
+    <Style Selector="TextBlock.SubText">
+        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+        <Setter Property="Foreground" Value="{Binding ColorSubTextId}"/>
+    </Style>
+    
+    <Style Selector="Button">
+        <Setter Property="Background" Value="{Binding ColorBoxId}"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Margin" Value="0 0 7 0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
+</Styles>
