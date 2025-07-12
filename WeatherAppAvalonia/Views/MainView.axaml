@@ -23,13 +23,13 @@
       
       <StackPanel Orientation="Horizontal" Background="{DynamicResource ColorBoxId}">
         <Image Source="/Assets/icons/search.png" Width="20" Height="20" VerticalAlignment="Center" Margin="15 0 12 0"/>
-        <TextBox Width="320" Text="Саратов"/>
+        <TextBox Width="320" Watermark="Саратов"/>
       </StackPanel>
       
     </DockPanel>
     
     <Border Background="{DynamicResource ColorBoxId}" Margin="0 7 0 0">
-      <TextBlock Foreground="White">Основа так называемая база</TextBlock>
+
     </Border>
   </DockPanel>
   

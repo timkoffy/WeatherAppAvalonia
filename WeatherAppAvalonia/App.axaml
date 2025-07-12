@@ -10,7 +10,7 @@
     </Application.DataTemplates>
 
     <Application.Styles>
-        <FluentTheme/>
+        <SimpleTheme/>
         <StyleInclude Source="avares://WeatherAppAvalonia/Styles/Styles.axaml" />
     </Application.Styles>
              
