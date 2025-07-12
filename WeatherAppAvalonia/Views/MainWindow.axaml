@@ -11,7 +11,7 @@
         Title="WeatherAppAvalonia"
         Width="995"
         Height="894"
-        Background="{Binding ColorBackGroundId}">
+        Background="{DynamicResource ColorSubBoxId}">
         <views:MainView />
         
 </Window>

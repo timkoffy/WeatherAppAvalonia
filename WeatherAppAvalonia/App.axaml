@@ -10,6 +10,14 @@
     </Application.DataTemplates>
 
     <Application.Styles>
-        <StyleInclude Source="avares://WeatherAppAvalonia/Styles/Fonts.axaml" />
+        <FluentTheme/>
+        <StyleInclude Source="avares://WeatherAppAvalonia/Styles/Styles.axaml" />
     </Application.Styles>
+             
+    <Application.Resources>
+        <SolidColorBrush x:Key="ColorBoxId" Color="#0F151C"/>
+        <SolidColorBrush x:Key="ColorSubBoxId" Color="#181F27"/>
+        <SolidColorBrush x:Key="ColorSubTextId" Color="#475971"/>
+    </Application.Resources>
+                    
 </Application>
