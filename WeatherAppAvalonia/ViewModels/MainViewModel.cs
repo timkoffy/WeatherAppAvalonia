@@ -1,8 +1,10 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿
 
 namespace WeatherAppAvalonia.ViewModels;
 
 public partial class MainViewModel : ViewModelBase
 {
-    public string Greetings => "Welcome";
+    public string ColorBoxId => "#0F151C";
+    public string ColorBackGroundId => "#181F28";
+    
 }

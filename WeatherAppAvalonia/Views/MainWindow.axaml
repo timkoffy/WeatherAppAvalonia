@@ -6,7 +6,11 @@
         xmlns:views="clr-namespace:WeatherAppAvalonia.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="WeatherAppAvalonia.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="WeatherAppAvalonia">
+        Title="WeatherAppAvalonia"
+        Width="995"
+        Height="894"
+        Background="{Binding ColorBackGroundId}">
         <views:MainView />
 </Window>

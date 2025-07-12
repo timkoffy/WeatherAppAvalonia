@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:WeatherAppAvalonia.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="WeatherAppAvalonia.Views.MainView"
              x:DataType="vm:MainViewModel">
   <Design.DataContext>
@@ -11,8 +11,22 @@
          to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
     <vm:MainViewModel />
   </Design.DataContext>
-
-  <Label>
-      
-  </Label>
+  
+  <DockPanel LastChildFill="True" Margin="16">
+    <DockPanel LastChildFill="True" Height="60" DockPanel.Dock="Top">
+      <Button DockPanel.Dock="Left" Height="60" Width="146" 
+              Background="{Binding ColorBoxId}" 
+              Margin="0 0 7 0">Сегодня</Button>
+      <Button DockPanel.Dock="Left" Height="60" Width="195" 
+              Background="{Binding ColorBoxId}"
+              Margin="0 0 7 0">На 10 дней</Button>
+      <Button DockPanel.Dock="Left" Height="60" Width="177" 
+              Background="{Binding ColorBoxId}"
+              Margin="0 0 7 0">На месяц</Button>
+    </DockPanel>
+    <Border Background="{Binding ColorBoxId}" Margin="0 7 0 0">
+      <TextBlock Foreground="White">Основа так называемая база</TextBlock>
+    </Border>
+  </DockPanel>
+  
 </UserControl>
