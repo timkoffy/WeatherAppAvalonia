@@ -3,22 +3,29 @@
     <Style Selector="Button">
         <Setter Property="Background" Value="{DynamicResource ColorBoxId}"/>
         <Setter Property="FontSize" Value="24"/>
-        <Setter Property="FontWeight" Value="Regular"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="Margin" Value="0 0 7 0"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="BorderThickness" Value="0"/>
     </Style>
-    <Style Selector="Button:pressed">
-        <Setter Property="Background" Value="#151C25"/>
+    <Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource ColorSubBoxId}" />
+    </Style>
+    <Style Selector="Button:pressed /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource ColorSubBoxId}" />
     </Style>
     
-    <Style Selector="TextBox">
+    <Style Selector="AutoCompleteBox">
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="White"/>
     </Style>
+    
+    <Style Selector="AutoCompleteBox TextBlock"> <Setter Property="Foreground" Value="#8EB2E2" /> </Style>
+    
     
 </Styles>

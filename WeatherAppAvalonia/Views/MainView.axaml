@@ -12,7 +12,6 @@
     <vm:MainViewModel />
   </Design.DataContext>
   
-  
   <DockPanel LastChildFill="True" Margin="16">
     
     <DockPanel LastChildFill="True" Height="60" DockPanel.Dock="Top">
@@ -20,17 +19,20 @@
       <Button DockPanel.Dock="Left" Height="60" Width="146">Сегодня</Button>
       <Button DockPanel.Dock="Left" Height="60" Width="195">На 10 дней</Button>
       <Button DockPanel.Dock="Left" Height="60" Width="177">На месяц</Button>
-      
-      <StackPanel Orientation="Horizontal" Background="{DynamicResource ColorBoxId}">
-        <Image Source="/Assets/icons/search.png" Width="20" Height="20" VerticalAlignment="Center" Margin="15 0 12 0"/>
-        <TextBox Width="320" Watermark="Саратов"/>
-      </StackPanel>
+      <Border Padding="7" Background="{DynamicResource ColorBoxId}">
+        <StackPanel Orientation="Horizontal">
+          <Button>
+            <Image Source="/Assets/icons/search.png" Margin="7 0" Width="20" Height="20" VerticalAlignment="Center"/>
+          </Button>
+          
+          <AutoCompleteBox Width="360" Margin="-10 2 0 0" Watermark="Саратов"/>
+        </StackPanel>
+      </Border>
       
     </DockPanel>
     
-    <Border Background="{DynamicResource ColorBoxId}" Margin="0 7 0 0">
-
-    </Border>
+    <Border Background="{DynamicResource ColorBoxId}" Margin="0 7 0 0"/>
+    
   </DockPanel>
   
 </UserControl>
