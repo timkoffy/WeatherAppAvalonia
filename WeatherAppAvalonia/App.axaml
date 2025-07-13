@@ -18,6 +18,8 @@
         <SolidColorBrush x:Key="ColorBoxId" Color="#0F151C"/>
         <SolidColorBrush x:Key="ColorSubBoxId" Color="#181F27"/>
         <SolidColorBrush x:Key="ColorSubTextId" Color="#475971"/>
+        <SolidColorBrush x:Key="ColorSubTextBetterId" Color="#60728B"/>
+        
     </Application.Resources>
                     
 </Application>

@@ -16,12 +16,12 @@
     
     <DockPanel LastChildFill="True" Height="60" DockPanel.Dock="Top">
       
-      <Button DockPanel.Dock="Left" Height="60" Width="146">Сегодня</Button>
-      <Button DockPanel.Dock="Left" Height="60" Width="195">На 10 дней</Button>
-      <Button DockPanel.Dock="Left" Height="60" Width="177">На месяц</Button>
-      <Border Padding="7" Background="{DynamicResource ColorBoxId}">
+      <Button CornerRadius="13" DockPanel.Dock="Left" Height="60" Width="146">Сегодня</Button>
+      <Button CornerRadius="13" DockPanel.Dock="Left" Height="60" Width="195">На 10 дней</Button>
+      <Button CornerRadius="13" DockPanel.Dock="Left" Height="60" Width="177">На месяц</Button>
+      <Border CornerRadius="13" Padding="7" Background="{DynamicResource ColorBoxId}">
         <StackPanel Orientation="Horizontal">
-          <Button>
+          <Button CornerRadius="6">
             <Image Source="/Assets/icons/search.png" Margin="7 0" Width="20" Height="20" VerticalAlignment="Center"/>
           </Button>
           
@@ -31,7 +31,9 @@
       
     </DockPanel>
     
-    <Border Background="{DynamicResource ColorBoxId}" Margin="0 7 0 0"/>
+    <Border CornerRadius="13" Background="{DynamicResource ColorBoxId}" Margin="0 7 0 0">
+      
+    </Border>
     
   </DockPanel>
   
