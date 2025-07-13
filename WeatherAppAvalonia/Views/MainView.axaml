@@ -56,11 +56,11 @@
                         VerticalScrollBarVisibility="Disabled">
             <StackPanel x:Name="ForecastStackPanel" Orientation="Horizontal" Spacing="10">
               
-              <!-- <DockPanel VerticalSpacing="16" LastChildFill="True" Width="60"> -->
-              <!--   <TextBlock Classes="SmallText" Text="07:00" DockPanel.Dock="Top" Margin="0 0 0 6"/> -->
-              <!--   <Image Source="/Assets/icons/sunny.png" Width="60" DockPanel.Dock="Top" /> -->
-              <!--   <TextBlock Classes="SmallText" Text="+13°" DockPanel.Dock="Bottom"/> -->
-              <!-- </DockPanel> -->
+              <DockPanel VerticalSpacing="16" LastChildFill="True" Width="60">
+                <TextBlock Classes="SmallText" Text="07:00" DockPanel.Dock="Top" Margin="0 0 0 6"/>
+                <Image Source="/Assets/icons/sunny.png" Width="60" DockPanel.Dock="Top" />
+                <TextBlock Classes="SmallText" Text="+13°" DockPanel.Dock="Bottom"/>
+              </DockPanel>
               
             </StackPanel>
           </ScrollViewer>
