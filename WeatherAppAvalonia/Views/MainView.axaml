@@ -54,15 +54,7 @@
         <Border x:Name="ForecastToday" Height="177" DockPanel.Dock="Top" Margin="0 0 0 16" Padding="16" CornerRadius="6" Background="{DynamicResource ColorSubBoxId}">
           <ScrollViewer HorizontalScrollBarVisibility="Hidden"
                         VerticalScrollBarVisibility="Disabled">
-            <StackPanel x:Name="ForecastStackPanel" Orientation="Horizontal" Spacing="10">
-              
-              <DockPanel VerticalSpacing="16" LastChildFill="True" Width="60">
-                <TextBlock Classes="SmallText" Text="07:00" DockPanel.Dock="Top" Margin="0 0 0 6"/>
-                <Image Source="/Assets/icons/sunny.png" Width="60" DockPanel.Dock="Top" />
-                <TextBlock Classes="SmallText" Text="+13°" DockPanel.Dock="Bottom"/>
-              </DockPanel>
-              
-            </StackPanel>
+            <StackPanel x:Name="ForecastStackPanel" Orientation="Horizontal" Spacing="23" />
           </ScrollViewer>
         </Border>
          
