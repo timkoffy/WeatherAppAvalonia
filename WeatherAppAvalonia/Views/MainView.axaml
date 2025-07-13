@@ -16,9 +16,9 @@
     
     <DockPanel LastChildFill="True" Height="60" DockPanel.Dock="Top">
       
-      <Button CornerRadius="13" DockPanel.Dock="Left" Height="60" Width="146">Сегодня</Button>
-      <Button CornerRadius="13" DockPanel.Dock="Left" Height="60" Width="195">На 10 дней</Button>
-      <Button CornerRadius="13" DockPanel.Dock="Left" Height="60" Width="177">На месяц</Button>
+      <Button DockPanel.Dock="Left" Height="60" Width="146">Сегодня</Button>
+      <Button DockPanel.Dock="Left" Height="60" Width="195">На 10 дней</Button>
+      <Button DockPanel.Dock="Left" Height="60" Width="177">На месяц</Button>
       <Border CornerRadius="13" Padding="7" Background="{DynamicResource ColorBoxId}">
         <StackPanel Orientation="Horizontal">
           <Button CornerRadius="6">
@@ -28,11 +28,39 @@
           <AutoCompleteBox Width="360" Margin="-10 2 0 0" Watermark="Саратов"/>
         </StackPanel>
       </Border>
-      
     </DockPanel>
     
-    <Border CornerRadius="13" Background="{DynamicResource ColorBoxId}" Margin="0 7 0 0">
-      
+    <Border Padding="16" Background="{DynamicResource ColorBoxId}" Margin="0 7 0 0" CornerRadius="13">
+      <DockPanel LastChildFill="True">
+        <DockPanel LastChildFill="True" Height="177" DockPanel.Dock="Top" Margin="0 0 0 16">
+          
+          <DockPanel Margin="0 0 16 0" DockPanel.Dock="Left">
+            
+            <DockPanel Height="110" DockPanel.Dock="Top">
+              <TextBlock LetterSpacing="-5" FontSize="120" FontWeight="Bold" Margin="-4 -15 10 0" Text="+19°" DockPanel.Dock="Left"/>
+              <Image Source="/Assets/icons/mostly-cloudy-day.png" Height="110" Width="105" DockPanel.Dock="Left"/>
+            </DockPanel>
+            
+            <TextBlock FontSize="58" FontWeight="Bold" Text="Переменная облачность" DockPanel.Dock="Bottom"/>
+            
+          </DockPanel>
+          
+          <Border CornerRadius="6" Background="{DynamicResource ColorSubBoxId}" Width="159" DockPanel.Dock="Right">
+          </Border>
+          
+        </DockPanel>
+        
+        <DockPanel Height="177" DockPanel.Dock="Top" Margin="0 0 0 16">
+          <Border CornerRadius="6" Background="{DynamicResource ColorSubBoxId}">
+          </Border>
+        </DockPanel>
+         
+        <DockPanel DockPanel.Dock="Bottom">
+          <Border CornerRadius="6" Background="{DynamicResource ColorSubBoxId}">
+          </Border>
+        </DockPanel>
+        
+      </DockPanel>
     </Border>
     
   </DockPanel>

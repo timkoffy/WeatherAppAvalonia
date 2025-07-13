@@ -1,5 +1,7 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    
     <Style Selector="Button">
         <Setter Property="Background" Value="{DynamicResource ColorBoxId}"/>
         <Setter Property="FontSize" Value="24"/>
@@ -9,6 +11,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="CornerRadius" Value="13"/>
     </Style>
     <Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
         <Setter Property="Foreground" Value="#D9D9D9" />
@@ -27,7 +30,9 @@
         <Setter Property="Foreground" Value="White"/>
     </Style>
     
-    <Style Selector="AutoCompleteBox TextBlock"> <Setter Property="Foreground" Value="#8EB2E2" /> </Style>
+    <Style Selector="AutoCompleteBox TextBlock">
+        <Setter Property="Foreground" Value="#8EB2E2" /> 
+    </Style>
     
     
 </Styles>
