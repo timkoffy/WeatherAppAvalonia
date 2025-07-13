@@ -32,16 +32,16 @@
     
     <Border Padding="16" Background="{DynamicResource ColorBoxId}" Margin="0 7 0 0" CornerRadius="13">
       <DockPanel LastChildFill="True">
-        <DockPanel LastChildFill="True" Height="177" DockPanel.Dock="Top" Margin="0 0 0 16">
+        <DockPanel LastChildFill="False" Height="177" DockPanel.Dock="Top" Margin="0 0 0 16">
           
           <DockPanel Margin="0 0 16 0" DockPanel.Dock="Left">
             
-            <DockPanel Height="110" DockPanel.Dock="Top">
+            <DockPanel LastChildFill="False" Height="110" DockPanel.Dock="Top">
               <TextBlock LetterSpacing="-5" FontSize="120" FontWeight="Bold" Margin="-4 -15 10 0" Text="+19°" DockPanel.Dock="Left"/>
-              <Image Source="/Assets/icons/mostly-cloudy-day.png" Height="110" Width="105" DockPanel.Dock="Left"/>
+              <Image Source="/Assets/icons/mostly-cloudy-day.png" Width="150" Margin="-20 -5 0 -30" DockPanel.Dock="Left"/>
             </DockPanel>
             
-            <TextBlock FontSize="58" FontWeight="Bold" Text="Переменная облачность" DockPanel.Dock="Bottom"/>
+            <TextBlock FontSize="60" FontWeight="Bold" Text="Переменная облачность" Margin="0 -7 0 0" DockPanel.Dock="Bottom"/>
             
           </DockPanel>
           
