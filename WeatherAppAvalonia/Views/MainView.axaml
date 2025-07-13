@@ -12,50 +12,61 @@
     <vm:MainViewModel />
   </Design.DataContext>
   
-  <DockPanel LastChildFill="True" Margin="16">
+  <DockPanel x:Name="Body" LastChildFill="True" Margin="16">
     
-    <DockPanel LastChildFill="True" Height="60" DockPanel.Dock="Top">
+    <DockPanel x:Name="Header" LastChildFill="True" Height="60" DockPanel.Dock="Top">
       
       <Button x:Name="ButtonToday" DockPanel.Dock="Left" Height="60" Width="146">Сегодня</Button>
       <Button x:Name="Button10Days" DockPanel.Dock="Left" Height="60" Width="195">На 10 дней</Button>
       <Button x:Name="ButtonMonth" DockPanel.Dock="Left" Height="60" Width="177">На месяц</Button>
-      <Border CornerRadius="13" Padding="7" Background="{DynamicResource ColorBoxId}">
+      
+      <Border x:Name="SearchBar" CornerRadius="13" Padding="7" Background="{DynamicResource ColorBoxId}">
         <StackPanel Orientation="Horizontal">
           <Button CornerRadius="6">
             <Image Source="/Assets/icons/search.png" Margin="7 0" Width="20" Height="20" VerticalAlignment="Center"/>
           </Button>
-          
           <AutoCompleteBox Width="360" Margin="-10 2 0 0" Watermark="Саратов"/>
         </StackPanel>
       </Border>
+      
     </DockPanel>
     
-    <Border Padding="16" Background="{DynamicResource ColorBoxId}" Margin="0 7 0 0" CornerRadius="13">
+    <Border x:Name="MainBlock" Padding="16" Background="{DynamicResource ColorBoxId}" Margin="0 7 0 0" CornerRadius="13">
       <DockPanel LastChildFill="True">
-        <DockPanel LastChildFill="False" Height="177" DockPanel.Dock="Top" Margin="0 0 0 16">
+        <DockPanel x:Name="Block1" LastChildFill="False" Height="177" DockPanel.Dock="Top" Margin="0 0 0 16">
           
-          <DockPanel Margin="0 0 16 0" DockPanel.Dock="Left">
+          <DockPanel x:Name="ForecastNow" Margin="0 0 16 0" DockPanel.Dock="Left">
             
             <DockPanel LastChildFill="False" Height="110" DockPanel.Dock="Top">
               <TextBlock LetterSpacing="-5" FontSize="120" FontWeight="SemiBold" Margin="-4 -15 10 0" Text="+19°" DockPanel.Dock="Left"/>
-              <Image Source="/Assets/icons/mostly-cloudy-day.png" Width="150" Margin="-20 -5 0 -30" DockPanel.Dock="Left"/>
+              <Image Source="/Assets/icons/mostly-cloudy-day.png" Width="150" Margin="-20 0 0 -10" DockPanel.Dock="Left"/>
             </DockPanel>
             
             <TextBlock FontSize="60" FontWeight="SemiBold" Text="Переменная облачность" Margin="0 -4 0 0" DockPanel.Dock="Bottom"/>
             
           </DockPanel>
           
-          <Border CornerRadius="6" Background="{DynamicResource ColorSubBoxId}" Width="159" DockPanel.Dock="Right">
+          <Border x:Name="ForecastAddition" CornerRadius="6" Background="{DynamicResource ColorSubBoxId}" Width="159" DockPanel.Dock="Right">
           </Border>
           
         </DockPanel>
         
-        <DockPanel Height="177" DockPanel.Dock="Top" Margin="0 0 0 16">
-          <Border CornerRadius="6" Background="{DynamicResource ColorSubBoxId}">
-          </Border>
-        </DockPanel>
+        <Border x:Name="ForecastToday" Height="177" DockPanel.Dock="Top" Margin="0 0 0 16" Padding="16" CornerRadius="6" Background="{DynamicResource ColorSubBoxId}">
+          <ScrollViewer HorizontalScrollBarVisibility="Hidden"
+                        VerticalScrollBarVisibility="Disabled">
+            <StackPanel x:Name="ForecastStackPanel" Orientation="Horizontal" Spacing="10">
+              
+              <!-- <DockPanel VerticalSpacing="16" LastChildFill="True" Width="60"> -->
+              <!--   <TextBlock Classes="SmallText" Text="07:00" DockPanel.Dock="Top" Margin="0 0 0 6"/> -->
+              <!--   <Image Source="/Assets/icons/sunny.png" Width="60" DockPanel.Dock="Top" /> -->
+              <!--   <TextBlock Classes="SmallText" Text="+13°" DockPanel.Dock="Bottom"/> -->
+              <!-- </DockPanel> -->
+              
+            </StackPanel>
+          </ScrollViewer>
+        </Border>
          
-        <DockPanel DockPanel.Dock="Bottom">
+        <DockPanel x:Name="Block2" DockPanel.Dock="Bottom">
           <Border CornerRadius="6" Background="{DynamicResource ColorSubBoxId}">
           </Border>
         </DockPanel>
