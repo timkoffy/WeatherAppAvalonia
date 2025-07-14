@@ -79,7 +79,7 @@ public partial class MainView : UserControl
         string[] times = new string[24];
         for (int i = 0; i < 24; i++)
         {
-            int hour = (7 + i) % 24;
+            int hour = (19 + i) % 24;
             times[i] = hour.ToString("D2")+":00";
         }
 
