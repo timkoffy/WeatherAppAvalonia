@@ -16,7 +16,7 @@
     
     <DockPanel x:Name="Header" LastChildFill="True" Height="60" DockPanel.Dock="Top">
       
-      <Button x:Name="ButtonToday" DockPanel.Dock="Left" Height="60" Width="146" Command="{Binding LoadWeatherCommand}">Сегодня</Button>
+      <Button x:Name="ButtonToday" DockPanel.Dock="Left" Height="60" Width="146">Сегодня</Button>
       <Button x:Name="Button10Days" DockPanel.Dock="Left" Height="60" Width="195">На 10 дней</Button>
       <Button x:Name="ButtonMonth" DockPanel.Dock="Left" Height="60" Width="177">На месяц</Button>
       
@@ -60,6 +60,10 @@
          
         <DockPanel x:Name="Block2" DockPanel.Dock="Bottom">
           <Border CornerRadius="6" Background="{DynamicResource ColorSubBoxId}">
+            <DockPanel>
+              <TextBlock x:Name="ResultText" FontSize="100" Text="aboba"/>
+              <Button x:Name="RunButton" Content="click" Command="{Binding LoadWeatherCommand}"/>
+            </DockPanel>
           </Border>
         </DockPanel>
         
