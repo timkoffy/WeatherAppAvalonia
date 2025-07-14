@@ -1,5 +1,6 @@
-using System.Reactive.Linq;
 using Avalonia.Controls;
+using Avalonia.Threading;
+using ReactiveUI;
 using WeatherAppAvalonia.ViewModels;
 
 namespace WeatherAppAvalonia.Views;

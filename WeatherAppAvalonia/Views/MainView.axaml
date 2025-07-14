@@ -5,18 +5,18 @@
              xmlns:vm="clr-namespace:WeatherAppAvalonia.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="WeatherAppAvalonia.Views.MainView"
-             x:DataType="vm:MainViewModel">
+             x:DataType="vm:MainWindowViewModel">
   <Design.DataContext>
     <!-- This only sets the DataContext for the previewer in an IDE,
          to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-    <vm:MainViewModel />
+    <vm:MainWindowViewModel />
   </Design.DataContext>
   
   <DockPanel x:Name="Body" LastChildFill="True" Margin="16">
     
     <DockPanel x:Name="Header" LastChildFill="True" Height="60" DockPanel.Dock="Top">
       
-      <Button x:Name="ButtonToday" DockPanel.Dock="Left" Height="60" Width="146">Сегодня</Button>
+      <Button x:Name="ButtonToday" DockPanel.Dock="Left" Height="60" Width="146" Command="{Binding LoadWeatherCommand}">Сегодня</Button>
       <Button x:Name="Button10Days" DockPanel.Dock="Left" Height="60" Width="195">На 10 дней</Button>
       <Button x:Name="ButtonMonth" DockPanel.Dock="Left" Height="60" Width="177">На месяц</Button>
       
