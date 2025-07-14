@@ -38,14 +38,14 @@ public partial class MainView : UserControl
             "sunny",
             "sunny",
             "mostly-cloudy-day",
-            "mostly-cloudy-w-rain-day",
-            "mostly-cloudy-w-rain-day",
-            "sunny",
-            "sunny",
-            "mostly-cloudy-w-rain-day",
-            "mostly-cloudy-w-rain-day",
-            "mostly-cloudy-day",
-            "sunny"
+            "mostly-cloudy-night",
+            "mostly-cloudy-w-rain-night",
+            "moony",
+            "moony",
+            "mostly-cloudy-w-rain-night",
+            "mostly-cloudy-w-rain-night",
+            "mostly-cloudy-night",
+            "moony"
         };
         
         string[] temperatures =
@@ -87,13 +87,20 @@ public partial class MainView : UserControl
         {
             switch (times[i])
             {
+                case "09:00":
+                    SpawnForecastInStackPanel("Сейчас", weathers[i], temperatures[i], true);
+                    break;
                 case "00:00":
                     var rectangle = new Rectangle {Width = 3, Height = 130, RadiusX = 1.5, RadiusY = 1.5, Fill = SolidColorBrush.Parse("#5060728B") };
                     ForecastStackPanel.Children.Add(rectangle);
                     SpawnForecastInStackPanel(times[i], weathers[i], temperatures[i]);
                     break;
                 case "05:00":
-                    SpawnForecastInStackPanel("04:43", "voshod", "Восход");
+                    SpawnForecastInStackPanel("04:43", "voshod", "Восход", true);
+                    SpawnForecastInStackPanel(times[i], weathers[i], temperatures[i]);
+                    break;
+                case "21:00":
+                    SpawnForecastInStackPanel("20:24", "zakat", "Закат", true);
                     SpawnForecastInStackPanel(times[i], weathers[i], temperatures[i]);
                     break;
                 default:
@@ -105,7 +112,7 @@ public partial class MainView : UserControl
         
     }
 
-    private void SpawnForecastInStackPanel(string time, string weather, string degrees)
+    private void SpawnForecastInStackPanel(string time, string weather, string degrees, bool isBold=false)
     {
         var dockPanel = new DockPanel
         {
@@ -134,7 +141,11 @@ public partial class MainView : UserControl
         };
         DockPanel.SetDock(tempText, Dock.Bottom);
         tempText.Classes.Add("SmallText");
-        
+        if (isBold)
+        {
+            timeText.FontWeight = FontWeight.SemiBold;
+            tempText.FontWeight = FontWeight.SemiBold;
+        }
         dockPanel.Children.Add(timeText);
         dockPanel.Children.Add(weatherIcon);
         dockPanel.Children.Add(tempText);

@@ -61,8 +61,8 @@
         <DockPanel x:Name="Block2" DockPanel.Dock="Bottom">
           <Border CornerRadius="6" Background="{DynamicResource ColorSubBoxId}">
             <DockPanel>
-              <TextBlock x:Name="ResultText" FontSize="100" Text="aboba"/>
-              <Button x:Name="RunButton" Content="click" Command="{Binding LoadWeatherCommand}"/>
+              <TextBlock FontSize="100" Text="{Binding Result}"/>
+              <Button Width="100" Height="50" Content="click" Command="{Binding LoadWeatherCommand}"/>
             </DockPanel>
           </Border>
         </DockPanel>
