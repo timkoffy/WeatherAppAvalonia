@@ -1,7 +1,9 @@
 using System;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Shapes;
 using Avalonia.Interactivity;
+using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 
@@ -48,30 +50,30 @@ public partial class MainView : UserControl
         
         string[] temperatures =
         {
-            "+13",
-            "+15",
-            "+17",
-            "+19",
-            "+20",
-            "+20",
-            "+20",
-            "+21",
-            "+21",
-            "+21",
-            "+20",
-            "+19",
-            "+20",
-            "+18",
-            "+17",
-            "+15",
-            "+13",
-            "+11",
-            "+11",
-            "+10",
-            "+10",
-            "+10",
-            "+11",
-            "+12"
+            "+13°",
+            "+15°",
+            "+17°",
+            "+19°",
+            "+20°",
+            "+20°",
+            "+20°",
+            "+21°",
+            "+21°",
+            "+21°",
+            "+20°",
+            "+19°",
+            "+20°",
+            "+18°",
+            "+17°",
+            "+15°",
+            "+13°",
+            "+11°",
+            "+11°",
+            "+10°",
+            "+10°",
+            "+10°",
+            "+11°",
+            "+12°"
         };
 
         string[] times = new string[24];
@@ -83,7 +85,22 @@ public partial class MainView : UserControl
 
         for (int i = 0; i < 24; i++)
         {
-            SpawnForecastInStackPanel(times[i], weathers[i], temperatures[i]);
+            switch (times[i])
+            {
+                case "00:00":
+                    var rectangle = new Rectangle {Width = 3, Height = 130, RadiusX = 1.5, RadiusY = 1.5, Fill = SolidColorBrush.Parse("#5060728B") };
+                    ForecastStackPanel.Children.Add(rectangle);
+                    SpawnForecastInStackPanel(times[i], weathers[i], temperatures[i]);
+                    break;
+                case "05:00":
+                    SpawnForecastInStackPanel("04:43", "voshod", "Восход");
+                    SpawnForecastInStackPanel(times[i], weathers[i], temperatures[i]);
+                    break;
+                default:
+                    SpawnForecastInStackPanel(times[i], weathers[i], temperatures[i]);
+                    break;
+            }
+            
         }
         
     }
@@ -113,7 +130,7 @@ public partial class MainView : UserControl
         
         var tempText = new TextBlock
         {
-            Text = $"{degrees}°"
+            Text = degrees
         };
         DockPanel.SetDock(tempText, Dock.Bottom);
         tempText.Classes.Add("SmallText");

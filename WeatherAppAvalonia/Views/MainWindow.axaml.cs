@@ -9,12 +9,5 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        var viewModel = new MainViewModel();
-        DataContext = viewModel;
-        
-        this.Opened += async (_, _) =>
-        {
-            await viewModel.LoadWeatherCommand.Execute();
-        };
     }
 }
