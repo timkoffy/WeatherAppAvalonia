@@ -16,7 +16,7 @@
     
     <DockPanel x:Name="Header" LastChildFill="True" Height="60" DockPanel.Dock="Top">
       
-      <Button x:Name="ButtonToday" DockPanel.Dock="Left" Height="60" Width="146">Сегодня</Button>
+      <Button x:Name="ButtonToday" DockPanel.Dock="Left" Height="60" Width="146" Command="{Binding LoadWeatherCommand}">Сегодня</Button>
       <Button x:Name="Button10Days" DockPanel.Dock="Left" Height="60" Width="195">На 10 дней</Button>
       <Button x:Name="ButtonMonth" DockPanel.Dock="Left" Height="60" Width="177">На месяц</Button>
       
@@ -38,7 +38,7 @@
           <DockPanel x:Name="ForecastNow" Margin="0 0 16 0" DockPanel.Dock="Left">
             
             <DockPanel LastChildFill="False" Height="110" DockPanel.Dock="Top">
-              <TextBlock LetterSpacing="-5" FontSize="120" FontWeight="SemiBold" Margin="-4 -15 10 0" Text="+19°" DockPanel.Dock="Left"/>
+              <TextBlock LetterSpacing="-5" FontSize="120" FontWeight="SemiBold" Margin="-4 -15 10 0" Text="{Binding WeatherCurInfo[0]}" DockPanel.Dock="Left"/>
               <Image Source="/Assets/icons/mostly-cloudy-day.png" Width="150" Margin="-20 0 0 -10" DockPanel.Dock="Left"/>
             </DockPanel>
             
