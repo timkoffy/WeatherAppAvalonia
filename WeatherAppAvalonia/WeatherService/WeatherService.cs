@@ -1,16 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using ReactiveUI;
 using WeatherAppAvalonia.Assets;
+using WeatherAppAvalonia.CityData;
 
 namespace WeatherAppAvalonia.WeatherService;
 
 public class WeatherService : ReactiveObject
 {
+    private const string BaseUrl = "http://api.weatherapi.com/v1/";
+    private const string ApiKey = "665604c20d5e4084a4c184203250707";
+    
+    
     private string[] _weatherInfo;
     public string[] WeatherInfo
     {
@@ -18,10 +24,10 @@ public class WeatherService : ReactiveObject
         set => this.RaiseAndSetIfChanged(ref _weatherInfo, value); 
     }
 
-    public async Task<WeatherCurrentData> GetCurrentWeatherFromIdAsync()
+    public async Task<WeatherCurrentData> GetCurrentWeatherFromIdAsync(string city)
     {
         using var client = new HttpClient();
-        var url = "http://api.weatherapi.com/v1/current.json?key=665604c20d5e4084a4c184203250707&q=Atkarsk&aqi=yes";
+        var url = $"{BaseUrl}/current.json?key={ApiKey}&q={city}&aqi=yes";
         var response = await client.GetStringAsync(url);
         var weather = JsonConvert.DeserializeObject<WeatherCurrentData>(response);
         return weather;
@@ -46,7 +52,8 @@ public class WeatherService : ReactiveObject
 
     public async Task<string[]> LoadWeatherAsync()
     {
-        var data = await GetCurrentWeatherFromIdAsync();
+        var city = "Аткарск";
+        var data = await GetCurrentWeatherFromIdAsync(city);
         var data1 = await GetCode(data.current.condition.code, data.current.is_day);
         
         WeatherInfo = new[]
@@ -57,4 +64,18 @@ public class WeatherService : ReactiveObject
         };
         return WeatherInfo;
     }
+    
+    public async Task<Dictionary<string, string>> GetAllCityNamesAsync(string city)
+    {
+        using var client = new HttpClient();
+        var url = $"{BaseUrl}search.json?key={ApiKey}&q={city}";
+        var response = await client.GetStringAsync(url);
+        
+        var cityList = JsonConvert.DeserializeObject<List<CitiSearchData>>(response);
+
+        var nameCountryList = cityList.ToDictionary(c => c.name, c => c.country);
+        return nameCountryList;
+    }
+    
+    
 }
