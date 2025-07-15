@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Shapes;
@@ -6,6 +7,7 @@ using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
+using Avalonia.Threading;
 
 namespace WeatherAppAvalonia.Views;
 
@@ -16,7 +18,26 @@ public partial class MainView : UserControl
         InitializeComponent();
         this.Loaded += OnLoaded;
     }
+    
+    
 
+    private async Task LongRunningTask()
+    {
+        this.FindControl<Button>("RunButton").IsEnabled = false;
+        this.FindControl<TextBlock>("ResultText").Text = "I'm working ...";
+        await Task.Delay(5000);
+        this.FindControl<TextBlock>("ResultText").Text = "Done";
+        this.FindControl<Button>("RunButton").IsEnabled = true;
+    }
+    
+    private void ButtonClickHandler(object sender, RoutedEventArgs e)
+    {
+        Dispatcher.UIThread.Post(() => LongRunningTask(), 
+                                                DispatcherPriority.Background);
+    }
+    
+    
+    
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
         string[] weathers =

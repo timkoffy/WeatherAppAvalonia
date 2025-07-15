@@ -27,4 +27,6 @@ public class MainWindowViewModel : ReactiveObject
             Result = weather;
         });
     }
+    
+    
 }
