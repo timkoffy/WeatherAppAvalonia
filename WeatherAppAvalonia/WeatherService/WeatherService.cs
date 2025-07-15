@@ -21,7 +21,7 @@ public class WeatherService : ReactiveObject
     public async Task<WeatherCurrentData> GetCurrentWeatherFromIdAsync()
     {
         using var client = new HttpClient();
-        var url = "http://api.weatherapi.com/v1/current.json?key=665604c20d5e4084a4c184203250707&q=Saratov&aqi=yes";
+        var url = "http://api.weatherapi.com/v1/current.json?key=665604c20d5e4084a4c184203250707&q=Atkarsk&aqi=yes";
         var response = await client.GetStringAsync(url);
         var weather = JsonConvert.DeserializeObject<WeatherCurrentData>(response);
         return weather;

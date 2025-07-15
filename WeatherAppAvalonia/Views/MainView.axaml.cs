@@ -26,7 +26,8 @@ public partial class MainView : UserControl
         
         this.FindControl<TextBlock>("CurTempText").Text = weather[0];
         this.FindControl<TextBlock>("CurConditionText").Text = weather[1];
-        // this.FindControl<Image>("CurConditionIcon").Source = new Bitmap($"avares://WeatherAppAvalonia/Assets/icons/{weather[2]}.png");
+        string uri = $"avares://WeatherAppAvalonia/Assets/icons/{weather[2]}.png";
+        this.FindControl<Image>("CurConditionIcon").Source = new Bitmap(AssetLoader.Open(new Uri(uri)));
     }
     
     private async void OnLoaded(object sender, RoutedEventArgs e)
