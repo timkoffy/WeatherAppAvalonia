@@ -50,9 +50,8 @@ public class WeatherService : ReactiveObject
         }
     }
 
-    public async Task<string[]> LoadWeatherAsync()
+    public async Task<string[]> LoadWeatherAsync(string city)
     {
-        var city = "Аткарск";
         var data = await GetCurrentWeatherFromIdAsync(city);
         var data1 = await GetCode(data.current.condition.code, data.current.is_day);
         

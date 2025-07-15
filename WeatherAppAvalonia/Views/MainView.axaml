@@ -22,13 +22,12 @@
       
       <Border x:Name="SearchBar" CornerRadius="13" Padding="7" Background="{DynamicResource ColorBoxId}">
         <StackPanel Orientation="Horizontal">
-          <Button CornerRadius="6">
-            <Image Source="/Assets/icons/search.png" Margin="7 0" Width="20" Height="20" VerticalAlignment="Center"/>
-          </Button>
+          <Image Source="/Assets/icons/search.png" Margin="7 0 17 0" Width="20" Height="20" VerticalAlignment="Center"/>
           <AutoCompleteBox x:Name="CitySearchBox" FilterMode="StartsWith" 
-                           Width="360" Margin="-10 2 0 0" Watermark="Саратов" 
-                           Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                           ItemsSource="{Binding Suggestions}"/>
+                           Width="360" Margin="-10 2 0 0" Watermark="Москва" 
+                           Text="{Binding SearchText, Mode=TwoWay}"
+                           ItemsSource="{Binding Suggestions}"
+                           SelectionChanged="CitySearchBox_Result"/>
         </StackPanel>
       </Border>
       

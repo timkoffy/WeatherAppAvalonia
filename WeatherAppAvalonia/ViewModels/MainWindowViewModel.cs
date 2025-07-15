@@ -9,7 +9,8 @@ namespace WeatherAppAvalonia.ViewModels;
 public class MainWindowViewModel : ReactiveObject
 {
     private string _searchText;
-    
+    private string _finalCityName;
+
     private readonly WeatherService.WeatherService _weatherService = new();
     
     public string SearchText
@@ -21,7 +22,12 @@ public class MainWindowViewModel : ReactiveObject
             _ = OnSearchTextChangedAsync(value);
         }
     }
-
+    public string FinalCityName
+    {
+        get => _finalCityName;
+        set => this.RaiseAndSetIfChanged(ref _finalCityName, value);
+    }
+    
     public ObservableCollection<string> Suggestions { get; } = new();
 
     private async Task OnSearchTextChangedAsync(string response)

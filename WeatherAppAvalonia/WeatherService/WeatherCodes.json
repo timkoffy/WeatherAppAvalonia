@@ -118,5 +118,77 @@
   "1213": {
     "day": { "text": "Лёгкий снег", "icon": "snowy" },
     "night": { "text": "Лёгкий снег", "icon": "snowy" }
+  },
+  "1216": {
+    "day": { "text": "Умеренный снег местами", "icon": "snowy" },
+    "night": { "text": "Умеренный снег местами", "icon": "snowy" }
+  },
+  "1219": {
+    "day": { "text": "Умеренный снег", "icon": "snowy" },
+    "night": { "text": "Умеренный снег", "icon": "snowy" }
+  },
+  "1222": {
+    "day": { "text": "Сильный снег местами", "icon": "snowy" },
+    "night": { "text": "Сильный снег местами", "icon": "snowy" }
+  },
+  "1225": {
+    "day": { "text": "Сильный снег", "icon": "snowy" },
+    "night": { "text": "Сильный снег", "icon": "snowy" }
+  },
+  "1237": {
+    "day": { "text": "Ледяная крупа", "icon": "wet-snowy" },
+    "night": { "text": "Ледяная крупа", "icon": "wet-snowy" }
+  },
+  "1240": {
+    "day": { "text": "Слабый дождь", "icon": "mostly-cloudy-w-rain" },
+    "night": { "text": "Слабый дождь", "icon": "mostly-cloudy-w-rain-night" }
+  },
+  "1243": {
+    "day": { "text": "Сильный дождь", "icon": "rain" },
+    "night": { "text": "Сильный дождь", "icon": "rain" }
+  },
+  "1246": {
+    "day": { "text": "Ливень", "icon": "rain" },
+    "night": { "text": "Ливень", "icon": "rain" }
+  },
+  "1249": {
+    "day": { "text": "Мокрый снег", "icon": "wet-snowy" },
+    "night": { "text": "Мокрый снег", "icon": "wet-snowy" }
+  },
+  "1252": {
+    "day": { "text": "Сильный мокрый снег", "icon": "wet-snowy" },
+    "night": { "text": "Сильный мокрый снег", "icon": "wet-snowy" }
+  },
+  "1255": {
+    "day": { "text": "Лёгкий снег", "icon": "snowy" },
+    "night": { "text": "Лёгкий снег", "icon": "snowy" }
+  },
+  "1258": {
+    "day": { "text": "Сильный снег", "icon": "snowy" },
+    "night": { "text": "Сильный снег", "icon": "snowy" }
+  },
+  "1261": {
+    "day": { "text": "Ледяная крупа", "icon": "snowy" },
+    "night": { "text": "Ледяная крупа", "icon": "snowy" }
+  },
+  "1264": {
+    "day": { "text": "Сильная ледяная крупа", "icon": "snowy" },
+    "night": { "text": "Сильная ледяная крупа", "icon": "snowy" }
+  },
+  "1273": {
+    "day": { "text": "Возможен дождь с грозой", "icon": "rain-w-lights" },
+    "night": { "text": "Возможен дождь с грозой", "icon": "rain-w-lights" }
+  },
+  "1276": {
+    "day": { "text": "Сильный дождь с грозой", "icon": "rain-w-lights" },
+    "night": { "text": "Сильный дождь с грозой", "icon": "rain-w-lights" }
+  },
+  "1279": {
+    "day": { "text": "Снег с грозой", "icon": "snowy" },
+    "night": { "text": "Снег с грозой", "icon": "snowy" }
+  },
+  "1282": {
+    "day": { "text": "Сильный снег с грозой", "icon": "snowy-w-lights" },
+    "night": { "text": "Сильный снег с грозой", "icon": "snowy-w-lights" }
   }
 }

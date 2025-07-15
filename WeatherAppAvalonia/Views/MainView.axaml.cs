@@ -1,13 +1,16 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Shapes;
+using Avalonia.Data.Converters;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using Avalonia.Threading;
+using WeatherAppAvalonia.ViewModels;
 
 namespace WeatherAppAvalonia.Views;
 
@@ -21,17 +24,26 @@ public partial class MainView : UserControl
         
     }
 
-    private async Task LongRunningTask()
+    private async Task LongRunningTask(string city = "Москва")
     {
         var _weatherService = new WeatherService.WeatherService();
-        var weather = await _weatherService.LoadWeatherAsync();
+        var weather = await _weatherService.LoadWeatherAsync(city);
         
         this.FindControl<TextBlock>("CurTempText").Text = weather[0];
         this.FindControl<TextBlock>("CurConditionText").Text = weather[1];
         string uri = $"avares://WeatherAppAvalonia/Assets/icons/{weather[2]}.png";
         this.FindControl<Image>("CurConditionIcon").Source = new Bitmap(AssetLoader.Open(new Uri(uri)));
-        
-        
+    }
+
+    private void CitySearchBox_Result(object sender, SelectionChangedEventArgs e)
+    {
+        if (CitySearchBox.SelectedItem is string selectedCity)
+        {
+            var viewModel = DataContext as MainWindowViewModel;
+            viewModel.FinalCityName = selectedCity;
+            
+            LongRunningTask(selectedCity);
+        }
     }
     
     private async void OnLoaded(object sender, RoutedEventArgs e)
