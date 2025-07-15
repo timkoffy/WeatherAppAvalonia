@@ -38,11 +38,11 @@
           <DockPanel x:Name="ForecastNow" Margin="0 0 16 0" DockPanel.Dock="Left">
             
             <DockPanel LastChildFill="False" Height="110" DockPanel.Dock="Top">
-              <TextBlock LetterSpacing="-5" FontSize="120" FontWeight="SemiBold" Margin="-4 -15 10 0" Text="+19°" DockPanel.Dock="Left"/>
-              <Image Source="/Assets/icons/mostly-cloudy-day.png" Width="150" Margin="-20 0 0 -10" DockPanel.Dock="Left"/>
+              <TextBlock x:Name="CurTempText" LetterSpacing="-5" FontSize="120" FontWeight="SemiBold" Margin="-4 -15 10 0" DockPanel.Dock="Left"/>
+              <Image x:Name="CurConditionIcon" Source="/Assets/icons/mostly-cloudy-day.png" Width="150" Margin="-20 0 0 -10" DockPanel.Dock="Left"/>
             </DockPanel>
             
-            <TextBlock FontSize="60" FontWeight="SemiBold" Text="Переменная облачность" Margin="0 -4 0 0" DockPanel.Dock="Bottom"/>
+            <TextBlock x:Name="CurConditionText" FontSize="60" FontWeight="SemiBold" Text="Переменная облачность" Margin="0 -4 0 0" DockPanel.Dock="Bottom"/>
             
           </DockPanel>
           
@@ -61,8 +61,6 @@
         <DockPanel x:Name="Block2" DockPanel.Dock="Bottom">
           <Border CornerRadius="6" Background="{DynamicResource ColorSubBoxId}">
             <DockPanel>
-              <TextBlock x:Name="ResultText" FontSize="20" Width="200" />
-              <Button x:Name="RunButton" Width="100" Height="50" Content="Run"  Click="ButtonClickHandler" />
             </DockPanel>
           </Border>
         </DockPanel>

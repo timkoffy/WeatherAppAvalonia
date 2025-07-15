@@ -1,38 +1,36 @@
+using System;
 using Newtonsoft.Json;
 
 namespace WeatherAppAvalonia.WeatherService;
 
-public class WeatherData
+public class WeatherCurrentData
 {
-    public Temperature temperature { get; set; }
-    public Description description { get; set; }
-    public Humidity humidity { get; set; }
-    public Pressure pressure { get; set; }
+    public Location location { get; set; }
+    public Current current { get; set; }
 }
 
-public class Temperature
+public class Location
 {
-    public TempDetail air { get; set; }
-    public TempDetail comfort { get; set; }
+    public string name { get; set; }
+    public string region { get; set; }
+    public string country { get; set; }
+    public string localtime { get; set; }
 }
 
-public class TempDetail
+public class Current
 {
-    [JsonProperty("C")]
-    public float? Celsius { get; set; }
+    [JsonProperty("temp_c")]
+    public double tempC { get; set; }
+
+    [JsonIgnore]
+    public string formattedTempC => $"+{Math.Round(tempC)}°";
+    
+    
+    public Condition condition { get; set; }
 }
 
-public class Description
+public class Condition
 {
-    public string full { get; set; }
-}
-
-public class Humidity
-{
-    public int percent { get; set; }
-}
-
-public class Pressure
-{
-    public int mm_hg_atm { get; set; }
+    public string text { get; set; }
+    
 }

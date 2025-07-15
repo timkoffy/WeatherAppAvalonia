@@ -18,28 +18,20 @@ public partial class MainView : UserControl
         InitializeComponent();
         this.Loaded += OnLoaded;
     }
-    
-    
 
     private async Task LongRunningTask()
     {
-        this.FindControl<Button>("RunButton").IsEnabled = false;
-        this.FindControl<TextBlock>("ResultText").Text = "I'm working ...";
-        await Task.Delay(5000);
-        this.FindControl<TextBlock>("ResultText").Text = "Done";
-        this.FindControl<Button>("RunButton").IsEnabled = true;
+        var _weatherService = new WeatherService.WeatherService();
+        var weather = await _weatherService.LoadWeatherAsync();
+        this.FindControl<TextBlock>("CurTempText").Text = weather[0];
+        this.FindControl<TextBlock>("CurConditionText").Text = weather[1];
+        
     }
     
-    private void ButtonClickHandler(object sender, RoutedEventArgs e)
+    private async void OnLoaded(object sender, RoutedEventArgs e)
     {
-        Dispatcher.UIThread.Post(() => LongRunningTask(), 
-                                                DispatcherPriority.Background);
-    }
-    
-    
-    
-    private void OnLoaded(object sender, RoutedEventArgs e)
-    {
+        await LongRunningTask();
+        
         string[] weathers =
         {
             "sunny",

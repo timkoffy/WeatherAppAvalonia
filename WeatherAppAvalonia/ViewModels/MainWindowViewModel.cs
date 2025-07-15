@@ -22,9 +22,9 @@ public class MainWindowViewModel : ReactiveObject
 
         LoadWeatherCommand = ReactiveCommand.CreateFromTask(async () =>
         {
-            Result = "Loading...";
+            
             var weather = await _weatherService.LoadWeatherAsync();
-            Result = weather;
+            
         });
     }
     
