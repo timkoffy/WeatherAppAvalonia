@@ -15,8 +15,10 @@ public partial class MainView : UserControl
 {
     public MainView()
     {
+        
         InitializeComponent();
         this.Loaded += OnLoaded;
+        
     }
 
     private async Task LongRunningTask()
@@ -28,6 +30,8 @@ public partial class MainView : UserControl
         this.FindControl<TextBlock>("CurConditionText").Text = weather[1];
         string uri = $"avares://WeatherAppAvalonia/Assets/icons/{weather[2]}.png";
         this.FindControl<Image>("CurConditionIcon").Source = new Bitmap(AssetLoader.Open(new Uri(uri)));
+        
+        
     }
     
     private async void OnLoaded(object sender, RoutedEventArgs e)

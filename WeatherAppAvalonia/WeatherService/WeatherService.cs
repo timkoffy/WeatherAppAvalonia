@@ -65,16 +65,19 @@ public class WeatherService : ReactiveObject
         return WeatherInfo;
     }
     
-    public async Task<Dictionary<string, string>> GetAllCityNamesAsync(string city)
+    public async Task<List<string>> GetAllCityNamesAsync(string cityResponse="Аткарск")
     {
         using var client = new HttpClient();
-        var url = $"{BaseUrl}search.json?key={ApiKey}&q={city}";
+        var url = $"{BaseUrl}search.json?key={ApiKey}&q={cityResponse}";
         var response = await client.GetStringAsync(url);
         
         var cityList = JsonConvert.DeserializeObject<List<CitiSearchData>>(response);
 
-        var nameCountryList = cityList.ToDictionary(c => c.name, c => c.country);
-        return nameCountryList;
+        // var nameCountryList = cityList.ToDictionary(c => c.name, c => c.country);
+        // return nameCountryList;
+        
+        var nameList = cityList.Select(c => c.name).ToList();
+        return nameList;
     }
     
     

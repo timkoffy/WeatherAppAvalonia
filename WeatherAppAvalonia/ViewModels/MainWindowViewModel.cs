@@ -1,32 +1,39 @@
-﻿using System.Reactive;
+﻿using System.Collections.ObjectModel;
+using System.Reactive;
+using System.Threading.Tasks;
 using ReactiveUI;
+using WeatherAppAvalonia;
 
 namespace WeatherAppAvalonia.ViewModels;
 
 public class MainWindowViewModel : ReactiveObject
 {
-    private readonly WeatherService.WeatherService _weatherService;
-
-    private string _result;
-    public string Result
-    {
-        get => _result;
-        set => this.RaiseAndSetIfChanged(ref _result, value);
-    }
-
-    public ReactiveCommand<Unit, Unit> LoadWeatherCommand { get; }
-
-    public MainWindowViewModel()
-    {
-        _weatherService = new WeatherService.WeatherService();
-
-        LoadWeatherCommand = ReactiveCommand.CreateFromTask(async () =>
-        {
-            
-            var weather = await _weatherService.LoadWeatherAsync();
-            
-        });
-    }
+    private string _searchText;
     
+    private readonly WeatherService.WeatherService _weatherService = new();
+    
+    public string SearchText
+    {
+        get => _searchText;
+        set
+        {
+            this.RaiseAndSetIfChanged(ref _searchText, value);
+            _ = OnSearchTextChangedAsync(value);
+        }
+    }
+
+    public ObservableCollection<string> Suggestions { get; } = new();
+
+    private async Task OnSearchTextChangedAsync(string response)
+    {
+        if (string.IsNullOrWhiteSpace(response) || response.Length < 2)
+            return;
+
+        var result = await _weatherService.GetAllCityNamesAsync(response);
+
+        Suggestions.Clear();
+        foreach (var item in result)
+            Suggestions.Add(item);
+    }
     
 }
