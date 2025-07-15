@@ -1,6 +1,6 @@
 {
   "1000": {
-    "day": { "text": "Ясно", "icon": "sunny" },
+    "day": { "text": "Солнечно", "icon": "sunny" },
     "night": { "text": "Ясно", "icon": "clear" }
   },
   "1003": {
@@ -9,7 +9,114 @@
   },
   "1006": {
     "day": { "text": "Пасмурно", "icon": "cloudy" },
-    "night": { "text": "Переменная облачность", "icon": "mostly-cloudy-night" }
+    "night": { "text": "Пасмурно", "icon": "cloudy" }
+  },
+  "1009": {
+    "day": { "text": "Сплошная облачность", "icon": "cloudy" },
+    "night": { "text": "Сплошная облачность", "icon": "cloudy" }
+  },
+  "1030": {
+    "day": { "text": "Дымка", "icon": "fog" },
+    "night": { "text": "Дымка", "icon": "fog" }
+  },
+  "1063": {
+    "day": { "text": "Возможен небольшой дождь", "icon": "rain" },
+    "night": { "text": "Возможен небольшой дождь", "icon": "rain" }
+  },
+  "1066": {
+    "day": { "text": "Возможен небольшой снег", "icon": "snowy" },
+    "night": { "text": "Возможен небольшой снег", "icon": "snowy" }
+  },
+  "1069": {
+    "day": { "text": "Возможен мокрый снег", "icon": "wet-snowy" },
+    "night": { "text": "Возможен мокрый снег", "icon": "wet-snowy" }
+  },
+  "1072": {
+    "day": { "text": "Возможна замерзающая морось", "icon": "wet-snowy" },
+    "night": { "text": "Возможна замерзающая морось", "icon": "wet-snowy" }
+  },
+  "1087": {
+    "day": { "text": "Возможны грозы", "icon": "rain-w-lights" },
+    "night": { "text": "Возможны грозы", "icon": "rain-w-lights" }
+  },
+  "1114": {
+    "day": { "text": "Метель", "icon": "snowy" },
+    "night": { "text": "Метель", "icon": "snowy" }
+  },
+  "1117": {
+    "day": { "text": "Буран", "icon": "snowy" },
+    "night": { "text": "Буран", "icon": "snowy" }
+  },
+  "1135": {
+    "day": { "text": "Туман", "icon": "fog" },
+    "night": { "text": "Туман", "icon": "fog" }
+  },
+  "1147": {
+    "day": { "text": "Ледяной туман", "icon": "fog" },
+    "night": { "text": "Ледяной туман", "icon": "fog" }
+  },
+  "1150": {
+    "day": { "text": "Слабая морось местами", "icon": "cloudy" },
+    "night": { "text": "Слабая морось местами", "icon": "cloudy" }
+  },
+  "1153": {
+    "day": { "text": "Слабая морось", "icon": "mostly-cloudy-w-rain" },
+    "night": { "text": "Слабая морось", "icon": "mostly-cloudy-w-rain-night" }
+  },
+  "1168": {
+    "day": { "text": "Замерзающая морось", "icon": "wet-snowy" },
+    "night": { "text": "Замерзающая морось", "icon": "wet-snowy" }
+  },
+  "1171": {
+    "day": { "text": "Сильная замерзающая морось", "icon": "wet-snowy" },
+    "night": { "text": "Сильная замерзающая морось", "icon": "wet-snowy" }
+  },
+  "1180": {
+    "day": { "text": "Слабый дождь местами", "icon": "mostly-cloudy-w-rain" },
+    "night": { "text": "Слабый дождь местами", "icon": "mostly-cloudy-w-rain-night" }
+  },
+  "1183": {
+    "day": { "text": "Слабый дождь", "icon": "mostly-cloudy-w-rain" },
+    "night": { "text": "Слабый дождь", "icon": "mostly-cloudy-w-rain-night" }
+  },
+  "1186": {
+    "day": { "text": "Умеренный дождь временами", "icon": "rain" },
+    "night": { "text": "Умеренный дождь временами", "icon": "rain" }
+  },
+  "1189": {
+    "day": { "text": "Умеренный дождь", "icon": "rain" },
+    "night": { "text": "Умеренный дождь", "icon": "rain" }
+  },
+  "1192": {
+    "day": { "text": "Сильный дождь временами", "icon": "rain" },
+    "night": { "text": "Сильный дождь временами", "icon": "rain" }
+  },
+  "1195": {
+    "day": { "text": "Сильный дождь", "icon": "rain" },
+    "night": { "text": "Сильный дождь", "icon": "rain" }
+  },
+  "1198": {
+    "day": { "text": "Ледяной дождь", "icon": "wet-snowy" },
+    "night": { "text": "Ледяной дождь", "icon": "wet-snowy" }
+  },
+  "1201": {
+    "day": { "text": "Сильный ледяной дождь", "icon": "wet-snowy" },
+    "night": { "text": "Сильный ледяной дождь", "icon": "wet-snowy" }
+  },
+  "1204": {
+    "day": { "text": "Лёгкий мокрый снег", "icon": "snowy" },
+    "night": { "text": "Лёгкий мокрый снег", "icon": "snowy" }
+  },
+  "1207": {
+    "day": { "text": "Сильный мокрый снег", "icon": "wet-snowy" },
+    "night": { "text": "Сильный мокрый снег", "icon": "wet-snowy" }
+  },
+  "1210": {
+    "day": { "text": "Лёгкий снег местами", "icon": "snowy" },
+    "night": { "text": "Лёгкий снег местами", "icon": "snowy" }
+  },
+  "1213": {
+    "day": { "text": "Лёгкий снег", "icon": "snowy" },
+    "night": { "text": "Лёгкий снег", "icon": "snowy" }
   }
 }
-  
