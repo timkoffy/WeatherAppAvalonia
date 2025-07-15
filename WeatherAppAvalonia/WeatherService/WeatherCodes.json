@@ -1,0 +1,36 @@
+[
+  {
+    "code": 1000,
+    "day": {
+      "text": "Ясно",
+      "icon": "sunny"
+    },
+    "night": {
+      "text": "Ясно",
+      "icon": "clear"
+    }
+  },
+  {
+    "code": 1003,
+    "day": {
+      "text": "Переменная облачность",
+      "icon": "mostly-cloudy-day"
+    },
+    "night": {
+      "text": "Переменная облачность",
+      "icon": "mostly-cloudy-night"
+    }
+  },
+  {
+    "code": 1006,
+    "day": {
+      "text": "Пасмурно",
+      "icon": "cloudy"
+    },
+    "night": {
+      "text": "Пасмурно",
+      "icon": "cloudy"
+    }
+  }
+]
+  

@@ -32,96 +32,96 @@ public partial class MainView : UserControl
     {
         await LongRunningTask();
         
-        string[] weathers =
-        {
-            "sunny",
-            "sunny",
-            "mostly-cloudy-day",
-            "mostly-cloudy-day",
-            "mostly-cloudy-w-rain-day",
-            "rain",
-            "rain-w-lights",
-            "rain-w-lights",
-            "rain-w-lights",
-            "cloudy",
-            "mostly-cloudy-day",
-            "mostly-cloudy-day",
-            "mostly-cloudy-w-rain-day",
-            "mostly-cloudy-w-rain-day",
-            "sunny",
-            "sunny",
-            "mostly-cloudy-day",
-            "mostly-cloudy-night",
-            "mostly-cloudy-w-rain-night",
-            "moony",
-            "moony",
-            "mostly-cloudy-w-rain-night",
-            "mostly-cloudy-w-rain-night",
-            "mostly-cloudy-night",
-            "moony"
-        };
-        
-        string[] temperatures =
-        {
-            "+13°",
-            "+15°",
-            "+17°",
-            "+19°",
-            "+20°",
-            "+20°",
-            "+20°",
-            "+21°",
-            "+21°",
-            "+21°",
-            "+20°",
-            "+19°",
-            "+20°",
-            "+18°",
-            "+17°",
-            "+15°",
-            "+13°",
-            "+11°",
-            "+11°",
-            "+10°",
-            "+10°",
-            "+10°",
-            "+11°",
-            "+12°"
-        };
-
-        string[] times = new string[24];
-        for (int i = 0; i < 24; i++)
-        {
-            int hour = (7 + i) % 24;
-            times[i] = hour.ToString("D2")+":00";
-        }
-
-        for (int i = 0; i < 24; i++)
-        {
-            switch (times[i])
-            {
-                case "09:00":
-                    SpawnForecastInStackPanel("Сейчас", weathers[i], temperatures[i], true);
-                    break;
-                case "00:00":
-                    var rectangle = new Rectangle {Width = 3, Height = 130, RadiusX = 1.5, RadiusY = 1.5, Fill = SolidColorBrush.Parse("#5060728B") };
-                    ForecastStackPanel.Children.Add(rectangle);
-                    SpawnForecastInStackPanel(times[i], weathers[i], temperatures[i]);
-                    break;
-                case "05:00":
-                    SpawnForecastInStackPanel("04:43", "voshod", "Восход", true);
-                    SpawnForecastInStackPanel(times[i], weathers[i], temperatures[i]);
-                    break;
-                case "21:00":
-                    SpawnForecastInStackPanel("20:24", "zakat", "Закат", true);
-                    SpawnForecastInStackPanel(times[i], weathers[i], temperatures[i]);
-                    break;
-                default:
-                    SpawnForecastInStackPanel(times[i], weathers[i], temperatures[i]);
-                    break;
-            }
-            
-        }
+        // string[] weathers =
+        // {
+        //     "sunny",
+        //     "sunny",
+        //     "mostly-cloudy-day",
+        //     "mostly-cloudy-day",
+        //     "mostly-cloudy-w-rain-day",
+        //     "rain",
+        //     "rain-w-lights",
+        //     "rain-w-lights",
+        //     "rain-w-lights",
+        //     "cloudy",
+        //     "mostly-cloudy-day",
+        //     "mostly-cloudy-day",
+        //     "mostly-cloudy-w-rain-day",
+        //     "mostly-cloudy-w-rain-day",
+        //     "sunny",
+        //     "sunny",
+        //     "mostly-cloudy-day",
+        //     "mostly-cloudy-night",
+        //     "mostly-cloudy-w-rain-night",
+        //     "moony",
+        //     "moony",
+        //     "mostly-cloudy-w-rain-night",
+        //     "mostly-cloudy-w-rain-night",
+        //     "mostly-cloudy-night",
+        //     "moony"
+        // };
+        //
+        // string[] temperatures =
+        // {
+        //     "+13°",
+        //     "+15°",
+        //     "+17°",
+        //     "+19°",
+        //     "+20°",
+        //     "+20°",
+        //     "+20°",
+        //     "+21°",
+        //     "+21°",
+        //     "+21°",
+        //     "+20°",
+        //     "+19°",
+        //     "+20°",
+        //     "+18°",
+        //     "+17°",
+        //     "+15°",
+        //     "+13°",
+        //     "+11°",
+        //     "+11°",
+        //     "+10°",
+        //     "+10°",
+        //     "+10°",
+        //     "+11°",
+        //     "+12°"
+        // };
+        //
+        // string[] times = new string[24];
+        // for (int i = 0; i < 24; i++)
+        // {
+        //     int hour = (7 + i) % 24;
+        //     times[i] = hour.ToString("D2")+":00";
+        // }
+        //
+        // for (int i = 0; i < 24; i++)
+        // {
+        //     switch (times[i])
+        //     {
+        //         case "09:00":
+        //             SpawnForecastInStackPanel("Сейчас", weathers[i], temperatures[i], true);
+        //             break;
+        //         case "00:00":
+        //             var rectangle = new Rectangle {Width = 3, Height = 130, RadiusX = 1.5, RadiusY = 1.5, Fill = SolidColorBrush.Parse("#5060728B") };
+        //             ForecastStackPanel.Children.Add(rectangle);
+        //             SpawnForecastInStackPanel(times[i], weathers[i], temperatures[i]);
+        //             break;
+        //         case "05:00":
+        //             SpawnForecastInStackPanel("04:43", "voshod", "Восход", true);
+        //             SpawnForecastInStackPanel(times[i], weathers[i], temperatures[i]);
+        //             break;
+        //         case "21:00":
+        //             SpawnForecastInStackPanel("20:24", "zakat", "Закат", true);
+        //             SpawnForecastInStackPanel(times[i], weathers[i], temperatures[i]);
+        //             break;
+        //         default:
+        //             SpawnForecastInStackPanel(times[i], weathers[i], temperatures[i]);
+        //             break;
+        //     }
+        //     
+        // }
         
     }
 

@@ -21,16 +21,15 @@ public class Current
 {
     [JsonProperty("temp_c")]
     public double tempC { get; set; }
-
     [JsonIgnore]
     public string formattedTempC => $"+{Math.Round(tempC)}°";
     
-    
     public Condition condition { get; set; }
+    
+    public bool is_day {get; set;}
 }
 
 public class Condition
 {
-    public string text { get; set; }
-    
+    public string code { get; set; }
 }
