@@ -26,7 +26,7 @@ public class Current
     
     public Condition condition { get; set; }
     
-    public bool is_day {get; set;}
+    public int is_day {get; set;}
 }
 
 public class Condition

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -26,24 +27,33 @@ public class WeatherService : ReactiveObject
         return weather;
     }
     
-    public async Task<string[]> GetCode(string code, bool isDay)
+    public async Task<string[]> GetCode(string code, int isDay)
     {
-        string filePath = "WeatherCodes.json";
-        string jsonString = File.ReadAllText(filePath);
-        var codeData = JsonConvert.DeserializeObject<WeatherCodeData>(jsonString);
-        //обработка кода
-        return codeData.code;
+        string jsonString = await File.ReadAllTextAsync("WeatherService/WeatherCodes.json");
+        var codeData = JsonConvert.DeserializeObject<Dictionary<string, WeatherCodeData>>(jsonString);
+
+        var entry = codeData[code];
+        
+        switch (isDay)  
+        {
+            case 1: 
+                return [entry.day.text, entry.day.icon]; 
+            case 0: 
+                return [entry.night.text, entry.night.icon];
+            default: return null;
+        }
     }
 
     public async Task<string[]> LoadWeatherAsync()
     {
         var data = await GetCurrentWeatherFromIdAsync();
-        var data1 = await GetCode(data.current.condition.code, );
+        var data1 = await GetCode(data.current.condition.code, data.current.is_day);
         
         WeatherInfo = new[]
         {
             data.current.formattedTempC,
-            data
+            data1[0],
+            data1[1]
         };
         return WeatherInfo;
     }

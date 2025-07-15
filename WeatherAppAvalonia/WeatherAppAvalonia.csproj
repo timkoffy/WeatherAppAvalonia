@@ -8,7 +8,9 @@
 
     <ItemGroup>
         <AvaloniaResource Include="Assets\**" />
-        <AvaloniaResource Include="WeatherService\WeatherCodes.json" />
+        <Content Include="WeatherService\WeatherCodes.json">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
 
     <ItemGroup>

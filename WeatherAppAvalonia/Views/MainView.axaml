@@ -39,10 +39,10 @@
             
             <DockPanel LastChildFill="False" Height="110" DockPanel.Dock="Top">
               <TextBlock x:Name="CurTempText" LetterSpacing="-5" FontSize="120" FontWeight="SemiBold" Margin="-4 -15 10 0" DockPanel.Dock="Left"/>
-              <Image x:Name="CurConditionIcon" Source="/Assets/icons/mostly-cloudy-day.png" Width="150" Margin="-20 0 0 -10" DockPanel.Dock="Left"/>
+              <Image x:Name="CurConditionIcon" Width="150" Margin="-20 0 0 -10" DockPanel.Dock="Left"/>
             </DockPanel>
             
-            <TextBlock x:Name="CurConditionText" FontSize="60" FontWeight="SemiBold" Text="Переменная облачность" Margin="0 -4 0 0" DockPanel.Dock="Bottom"/>
+            <TextBlock x:Name="CurConditionText" FontSize="60" FontWeight="SemiBold" Margin="0 -4 0 0" DockPanel.Dock="Bottom"/>
             
           </DockPanel>
           

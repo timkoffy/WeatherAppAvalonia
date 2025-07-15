@@ -23,9 +23,10 @@ public partial class MainView : UserControl
     {
         var _weatherService = new WeatherService.WeatherService();
         var weather = await _weatherService.LoadWeatherAsync();
+        
         this.FindControl<TextBlock>("CurTempText").Text = weather[0];
         this.FindControl<TextBlock>("CurConditionText").Text = weather[1];
-        
+        // this.FindControl<Image>("CurConditionIcon").Source = new Bitmap($"avares://WeatherAppAvalonia/Assets/icons/{weather[2]}.png");
     }
     
     private async void OnLoaded(object sender, RoutedEventArgs e)
