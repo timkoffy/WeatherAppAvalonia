@@ -18,11 +18,6 @@ public class WeatherService : ReactiveObject
     
     
     private string[] _weatherInfo;
-    public string[] WeatherInfo
-    {
-        get => _weatherInfo;
-        set => this.RaiseAndSetIfChanged(ref _weatherInfo, value); 
-    }
 
     public async Task<WeatherCurrentData> GetCurrentWeatherFromIdAsync(string city)
     {
@@ -50,35 +45,52 @@ public class WeatherService : ReactiveObject
         }
     }
 
-    public async Task<string[]> LoadWeatherAsync(string city)
+    public async Task<List<List<string>>> LoadWeatherAsync(string city)
     {
         var data = await GetCurrentWeatherFromIdAsync(city);
         var data1 = await GetConditionFromCode(data.current.condition.code, data.current.is_day);
-        
-        var forecastHours = weather.forecast.forecastday[0].hour;
 
+        int currentTime = int.Parse(data.current.lastUpdated.Split(" ")[1].Split(":")[0]);
+        int start = Math.Max(0, currentTime-3);
+        
+        var forecastHours = data.forecast.forecastday[0].hour;
+        forecastHours.AddRange(data.forecast.forecastday[1].hour);
+        forecastHours = forecastHours.GetRange(start, 24);
+        
         var hours = new List<string>();
-        var codes = new List<string>();
+        var conditionIcons = new List<string>();
         var temps = new List<string>();
 
         foreach (var h in forecastHours)
         {
             string hour = h.Time.Split(' ')[1];
             hours.Add(hour);
-            
-            codes.Add(h.condition.code);
-            
+            string[] condition = await GetConditionFromCode(h.condition.code, h.is_day);
+            conditionIcons.Add(condition[1]);
             temps.Add($"+{Math.Round(h.TempC)}°");
         }
-
         
-        WeatherInfo = new[]
+        var weatherInfo = new List<string>
         {
-            data.current.formattedTempC,
+            $"+{Math.Round(data.current.tempC)}°",
             data1[0],
             data1[1]
         };
-        return WeatherInfo;
+
+        var currentTimeResult = new List<string>
+        {
+            $"{currentTime}:00"
+        };
+
+        var result = new List<List<string>>
+        {
+            weatherInfo,
+            hours,
+            conditionIcons,
+            temps,
+            currentTimeResult
+        };
+        return result;
     }
     
     public async Task<List<string>> GetAllCityNamesAsync(string cityResponse="Аткарск")

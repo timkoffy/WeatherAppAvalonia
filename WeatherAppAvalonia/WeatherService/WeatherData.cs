@@ -15,12 +15,10 @@ public class Current
 {
     [JsonProperty("temp_c")]
     public double tempC { get; set; }
-    [JsonIgnore]
-    public string formattedTempC => $"+{Math.Round(tempC)}°";
+    
     
     [JsonProperty("last_updated")]
-    public string LastUpdated { get; set; }
-    [JsonIgnore] public string formattedLastUpdated => LastUpdated.Split(" ")[1];
+    public string lastUpdated { get; set; }
     
     public Condition condition { get; set; }
     
@@ -51,10 +49,9 @@ public class Hour
     [JsonProperty("temp_c")]
     public double TempC { get; set; }
 
-    [JsonIgnore]
-    public string FormattedTemp => $"+{Math.Round(TempC)}°";
-
     public ConditionHour condition { get; set; }
+    
+    public int is_day {get; set;}
 }
 
 public class ConditionHour {

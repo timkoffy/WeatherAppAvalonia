@@ -32,8 +32,8 @@
     "night": { "text": "Возможен мокрый снег", "icon": "wet-snowy" }
   },
   "1072": {
-    "day": { "text": "Возможна замерзающая морось", "icon": "wet-snowy" },
-    "night": { "text": "Возможна замерзающая морось", "icon": "wet-snowy" }
+    "day": { "text": "Замерзающая морось", "icon": "wet-snowy" },
+    "night": { "text": "Замерзающая морось", "icon": "wet-snowy" }
   },
   "1087": {
     "day": { "text": "Возможны грозы", "icon": "rain-w-lights" },
@@ -56,11 +56,11 @@
     "night": { "text": "Ледяной туман", "icon": "fog" }
   },
   "1150": {
-    "day": { "text": "Слабая морось местами", "icon": "cloudy" },
-    "night": { "text": "Слабая морось местами", "icon": "cloudy" }
+    "day": { "text": "Слабая морось местами", "icon": "mostly-cloudy-w-rain-day" },
+    "night": { "text": "Слабая морось местами", "icon": "mostly-cloudy-w-rain-night" }
   },
   "1153": {
-    "day": { "text": "Слабая морось", "icon": "mostly-cloudy-w-rain" },
+    "day": { "text": "Слабая морось", "icon": "mostly-cloudy-w-rain-day" },
     "night": { "text": "Слабая морось", "icon": "mostly-cloudy-w-rain-night" }
   },
   "1168": {
@@ -68,28 +68,28 @@
     "night": { "text": "Замерзающая морось", "icon": "wet-snowy" }
   },
   "1171": {
-    "day": { "text": "Сильная замерзающая морось", "icon": "wet-snowy" },
-    "night": { "text": "Сильная замерзающая морось", "icon": "wet-snowy" }
+    "day": { "text": "Замерзающая морось", "icon": "wet-snowy" },
+    "night": { "text": "Замерзающая морось", "icon": "wet-snowy" }
   },
   "1180": {
-    "day": { "text": "Слабый дождь местами", "icon": "mostly-cloudy-w-rain" },
+    "day": { "text": "Слабый дождь местами", "icon": "mostly-cloudy-w-rain-day" },
     "night": { "text": "Слабый дождь местами", "icon": "mostly-cloudy-w-rain-night" }
   },
   "1183": {
-    "day": { "text": "Слабый дождь", "icon": "mostly-cloudy-w-rain" },
+    "day": { "text": "Слабый дождь", "icon": "mostly-cloudy-w-rain-day" },
     "night": { "text": "Слабый дождь", "icon": "mostly-cloudy-w-rain-night" }
   },
   "1186": {
-    "day": { "text": "Умеренный дождь временами", "icon": "rain" },
-    "night": { "text": "Умеренный дождь временами", "icon": "rain" }
+    "day": { "text": "Умеренный дождь", "icon": "rain" },
+    "night": { "text": "Умеренный дождь", "icon": "rain" }
   },
   "1189": {
     "day": { "text": "Умеренный дождь", "icon": "rain" },
     "night": { "text": "Умеренный дождь", "icon": "rain" }
   },
   "1192": {
-    "day": { "text": "Сильный дождь временами", "icon": "rain" },
-    "night": { "text": "Сильный дождь временами", "icon": "rain" }
+    "day": { "text": "Сильный дождь", "icon": "rain" },
+    "night": { "text": "Сильный дождь", "icon": "rain" }
   },
   "1195": {
     "day": { "text": "Сильный дождь", "icon": "rain" },
@@ -120,8 +120,8 @@
     "night": { "text": "Лёгкий снег", "icon": "snowy" }
   },
   "1216": {
-    "day": { "text": "Умеренный снег местами", "icon": "snowy" },
-    "night": { "text": "Умеренный снег местами", "icon": "snowy" }
+    "day": { "text": "Умеренный снег", "icon": "snowy" },
+    "night": { "text": "Умеренный снег", "icon": "snowy" }
   },
   "1219": {
     "day": { "text": "Умеренный снег", "icon": "snowy" },
@@ -140,7 +140,7 @@
     "night": { "text": "Ледяная крупа", "icon": "wet-snowy" }
   },
   "1240": {
-    "day": { "text": "Слабый дождь", "icon": "mostly-cloudy-w-rain" },
+    "day": { "text": "Слабый дождь", "icon": "mostly-cloudy-w-rain-day" },
     "night": { "text": "Слабый дождь", "icon": "mostly-cloudy-w-rain-night" }
   },
   "1243": {

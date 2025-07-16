@@ -24,17 +24,54 @@ public partial class MainView : UserControl
         
     }
 
-    private async Task LongRunningTask(string city = "Москва")
+    private async Task LongRunningTask(string city = "Саратов")
     {
         var _weatherService = new WeatherService.WeatherService();
         var weather = await _weatherService.LoadWeatherAsync(city);
         
-        this.FindControl<TextBlock>("CurTempText").Text = weather[0];
-        this.FindControl<TextBlock>("CurConditionText").Text = weather[1];
-        string uri = $"avares://WeatherAppAvalonia/Assets/icons/{weather[2]}.png";
+        this.FindControl<TextBlock>("CurTempText").Text = weather[0][0];
+        this.FindControl<TextBlock>("CurConditionText").Text = weather[0][1];
+        string uri = $"avares://WeatherAppAvalonia/Assets/icons/{weather[0][2]}.png";
         this.FindControl<Image>("CurConditionIcon").Source = new Bitmap(AssetLoader.Open(new Uri(uri)));
         
+        var hours = weather[1];
+        var conditionIcons = weather[2];
+        var temps = weather[3];
+        var currentTime = weather[4];
+        string nowHour = currentTime[0];
         
+        ForecastStackPanel.Children.Clear();
+        
+        for (int i = 0; i < hours.Count; i++)
+        {
+            if (hours[i] == nowHour)
+            {
+                SpawnForecastInStackPanel("Сейчас", conditionIcons[i], temps[i], true);
+                continue;
+            }
+
+            if (hours[i] == "00:00")
+            {
+                if (i != 0)
+                {
+                    var rectangle = new Rectangle
+                    {
+                        Width = 3,
+                        Height = 130,
+                        RadiusX = 1.5,
+                        RadiusY = 1.5,
+                        Fill = SolidColorBrush.Parse("#5060728B")
+                    };
+                    ForecastStackPanel.Children.Add(rectangle);
+                }
+
+                SpawnForecastInStackPanel(hours[i], conditionIcons[i], temps[i]);
+            }
+            else
+            {
+                SpawnForecastInStackPanel(hours[i], conditionIcons[i], temps[i]);
+            }
+        }
     }
 
     private void CitySearchBox_Result(object sender, SelectionChangedEventArgs e)
@@ -51,98 +88,6 @@ public partial class MainView : UserControl
     private async void OnLoaded(object sender, RoutedEventArgs e)
     {
         await LongRunningTask();
-        
-        // string[] weathers =
-        // {
-        //     "sunny",
-        //     "sunny",
-        //     "mostly-cloudy-day",
-        //     "mostly-cloudy-day",
-        //     "mostly-cloudy-w-rain-day",
-        //     "rain",
-        //     "rain-w-lights",
-        //     "rain-w-lights",
-        //     "rain-w-lights",
-        //     "cloudy",
-        //     "mostly-cloudy-day",
-        //     "mostly-cloudy-day",
-        //     "mostly-cloudy-w-rain-day",
-        //     "mostly-cloudy-w-rain-day",
-        //     "sunny",
-        //     "sunny",
-        //     "mostly-cloudy-day",
-        //     "mostly-cloudy-night",
-        //     "mostly-cloudy-w-rain-night",
-        //     "moony",
-        //     "moony",
-        //     "mostly-cloudy-w-rain-night",
-        //     "mostly-cloudy-w-rain-night",
-        //     "mostly-cloudy-night",
-        //     "moony"
-        // };
-        //
-        // string[] temperatures =
-        // {
-        //     "+13°",
-        //     "+15°",
-        //     "+17°",
-        //     "+19°",
-        //     "+20°",
-        //     "+20°",
-        //     "+20°",
-        //     "+21°",
-        //     "+21°",
-        //     "+21°",
-        //     "+20°",
-        //     "+19°",
-        //     "+20°",
-        //     "+18°",
-        //     "+17°",
-        //     "+15°",
-        //     "+13°",
-        //     "+11°",
-        //     "+11°",
-        //     "+10°",
-        //     "+10°",
-        //     "+10°",
-        //     "+11°",
-        //     "+12°"
-        // };
-        //
-        // string[] times = new string[24];
-        // for (int i = 0; i < 24; i++)
-        // {
-        //     int hour = (7 + i) % 24;
-        //     times[i] = hour.ToString("D2")+":00";
-        // }
-        //
-        // for (int i = 0; i < 24; i++)
-        // {
-        //     switch (times[i])
-        //     {
-        //         case "09:00":
-        //             SpawnForecastInStackPanel("Сейчас", weathers[i], temperatures[i], true);
-        //             break;
-        //         case "00:00":
-        //             var rectangle = new Rectangle {Width = 3, Height = 130, RadiusX = 1.5, RadiusY = 1.5, Fill = SolidColorBrush.Parse("#5060728B") };
-        //             ForecastStackPanel.Children.Add(rectangle);
-        //             SpawnForecastInStackPanel(times[i], weathers[i], temperatures[i]);
-        //             break;
-        //         case "05:00":
-        //             SpawnForecastInStackPanel("04:43", "voshod", "Восход", true);
-        //             SpawnForecastInStackPanel(times[i], weathers[i], temperatures[i]);
-        //             break;
-        //         case "21:00":
-        //             SpawnForecastInStackPanel("20:24", "zakat", "Закат", true);
-        //             SpawnForecastInStackPanel(times[i], weathers[i], temperatures[i]);
-        //             break;
-        //         default:
-        //             SpawnForecastInStackPanel(times[i], weathers[i], temperatures[i]);
-        //             break;
-        //     }
-        //     
-        // }
-        
     }
 
     private void SpawnForecastInStackPanel(string time, string weather, string degrees, bool isBold=false)

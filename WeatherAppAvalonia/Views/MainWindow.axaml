@@ -9,7 +9,7 @@
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="WeatherAppAvalonia"
-        Width="1095"
+        Width="1120"
         Height="894"
         Background="{DynamicResource ColorSubBoxId}">
         <views:MainView />

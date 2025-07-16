@@ -24,7 +24,7 @@
         <StackPanel Orientation="Horizontal">
           <Image Source="/Assets/icons/search.png" Margin="7 0 17 0" Width="20" Height="20" VerticalAlignment="Center"/>
           <AutoCompleteBox x:Name="CitySearchBox" FilterMode="StartsWith" 
-                           Width="360" Margin="-10 2 0 0" Watermark="Москва" 
+                           Width="360" Margin="-10 2 0 0" Watermark="Саратов" 
                            Text="{Binding SearchText, Mode=TwoWay}"
                            ItemsSource="{Binding Suggestions}"
                            SelectionChanged="CitySearchBox_Result"/>
@@ -56,7 +56,7 @@
         <Border x:Name="ForecastToday" Height="177" DockPanel.Dock="Top" Margin="0 0 0 16" Padding="16" CornerRadius="6" Background="{DynamicResource ColorSubBoxId}">
           <ScrollViewer HorizontalScrollBarVisibility="Hidden"
                         VerticalScrollBarVisibility="Disabled">
-            <StackPanel x:Name="ForecastStackPanel" Orientation="Horizontal" Spacing="23" />
+            <StackPanel x:Name="ForecastStackPanel" Orientation="Horizontal" Spacing="26" />
           </ScrollViewer>
         </Border>
          
