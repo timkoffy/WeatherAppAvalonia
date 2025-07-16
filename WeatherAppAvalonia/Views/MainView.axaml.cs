@@ -37,8 +37,11 @@ public partial class MainView : UserControl
         var hours = weather[1];
         var conditionIcons = weather[2];
         var temps = weather[3];
-        var currentTime = weather[4];
-        string nowHour = currentTime[0];
+        
+        var events = weather[4];
+        string nowHour = events[0];
+        string sunriseTime = events[1];
+        string sunsetTime = events[2];
         
         ForecastStackPanel.Children.Clear();
         
@@ -65,6 +68,19 @@ public partial class MainView : UserControl
                     ForecastStackPanel.Children.Add(rectangle);
                 }
 
+                SpawnForecastInStackPanel(hours[i], conditionIcons[i], temps[i]);
+                continue;
+            }
+
+            if (i != 0 && hours[i-1].Split(':')[0] == sunriseTime.Split(':')[0])
+            {
+                SpawnForecastInStackPanel(sunriseTime, "voshod", "Восход", true);
+                SpawnForecastInStackPanel(hours[i], conditionIcons[i], temps[i]);
+                continue;
+            }
+            if (i != 0 &&hours[i-1].Split(':')[0] == sunsetTime.Split(':')[0])
+            {
+                SpawnForecastInStackPanel(sunsetTime, "zakat", "Закат", true);
                 SpawnForecastInStackPanel(hours[i], conditionIcons[i], temps[i]);
             }
             else

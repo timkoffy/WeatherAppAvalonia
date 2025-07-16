@@ -50,12 +50,15 @@ public class WeatherService : ReactiveObject
         var data = await GetCurrentWeatherFromIdAsync(city);
         var data1 = await GetConditionFromCode(data.current.condition.code, data.current.is_day);
 
-        int currentTime = int.Parse(data.current.lastUpdated.Split(" ")[1].Split(":")[0]);
-        int start = Math.Max(0, currentTime-3);
+        int currentTime = int.Parse(data.current.last_updated.Split(" ")[1].Split(":")[0]);
+        int start = Math.Max(0, currentTime-2);
+        
+        string sunriseTime = GetActualTime("sunrise", data, currentTime);
+        string sunsetTime = GetActualTime("sunset", data, currentTime);
         
         var forecastHours = data.forecast.forecastday[0].hour;
         forecastHours.AddRange(data.forecast.forecastday[1].hour);
-        forecastHours = forecastHours.GetRange(start, 24);
+        forecastHours = forecastHours.GetRange(start, 21);
         
         var hours = new List<string>();
         var conditionIcons = new List<string>();
@@ -63,23 +66,27 @@ public class WeatherService : ReactiveObject
 
         foreach (var h in forecastHours)
         {
-            string hour = h.Time.Split(' ')[1];
+            string hour = h.time.Split(' ')[1];
             hours.Add(hour);
+            
             string[] condition = await GetConditionFromCode(h.condition.code, h.is_day);
             conditionIcons.Add(condition[1]);
-            temps.Add($"+{Math.Round(h.TempC)}°");
+            
+            temps.Add($"+{Math.Round(h.temp_c)}°");
         }
         
         var weatherInfo = new List<string>
         {
-            $"+{Math.Round(data.current.tempC)}°",
+            $"+{Math.Round(data.current.temp_c)}°",
             data1[0],
             data1[1]
         };
 
-        var currentTimeResult = new List<string>
+        var events = new List<string>
         {
-            $"{currentTime}:00"
+            $"{currentTime}:00",
+            $"{sunriseTime}",
+            $"{sunsetTime}"
         };
 
         var result = new List<List<string>>
@@ -88,7 +95,7 @@ public class WeatherService : ReactiveObject
             hours,
             conditionIcons,
             temps,
-            currentTimeResult
+            events
         };
         return result;
     }
@@ -104,6 +111,31 @@ public class WeatherService : ReactiveObject
         var nameList = cityList.Select(c => c.name).ToList();
         return nameList;
     }
-    
+
+    private string Time12ToTime24(string time)
+    {
+        string[] SplittedTime = time.Split(" ")[0].Split(":"); // hours[0], minutes[1]
+        var dict = new Dictionary<string, string>();
+        dict.Add("AM", time);
+        dict.Add("PM", $"{int.Parse(SplittedTime[0])+12}:{SplittedTime[1]}");
+        return dict[time.Split(" ")[1]];
+    }
+
+    private string GetActualTime(string type, WeatherCurrentData data, int currentTime)
+    {
+        string time = type == "sunrise"
+            ? data.forecast.forecastday[0].astro.sunrise
+            : data.forecast.forecastday[0].astro.sunset;
+        time = Time12ToTime24(time);
+        
+        if (int.Parse(time.Split(":")[0]) < currentTime-2)
+        {
+            time = type == "sunrise"
+                ? data.forecast.forecastday[1].astro.sunrise
+                : data.forecast.forecastday[1].astro.sunset;
+            time = Time12ToTime24(time);
+        }
+        return time;
+    }
     
 }

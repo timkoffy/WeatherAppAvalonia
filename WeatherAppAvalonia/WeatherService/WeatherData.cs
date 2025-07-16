@@ -13,12 +13,9 @@ public class WeatherCurrentData
 
 public class Current
 {
-    [JsonProperty("temp_c")]
-    public double tempC { get; set; }
+    public double temp_c { get; set; }
     
-    
-    [JsonProperty("last_updated")]
-    public string lastUpdated { get; set; }
+    public string last_updated { get; set; }
     
     public Condition condition { get; set; }
     
@@ -37,17 +34,15 @@ public class Forecast
 
 public class ForecastDay
 {
-    // public Astro astro { get; set; }
+    public Astro astro { get; set; }
     public List<Hour> hour { get; set; }
 }
 
 public class Hour
 {
-    [JsonProperty("time")]
-    public string Time { get; set; }
+    public string time { get; set; }
 
-    [JsonProperty("temp_c")]
-    public double TempC { get; set; }
+    public double temp_c { get; set; }
 
     public ConditionHour condition { get; set; }
     
@@ -56,4 +51,10 @@ public class Hour
 
 public class ConditionHour {
     public string code { get; set; }
+}
+
+public class Astro
+{
+    public string sunrise { get; set; }
+    public string sunset { get; set; }
 }
