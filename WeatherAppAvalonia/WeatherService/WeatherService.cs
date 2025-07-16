@@ -34,15 +34,19 @@ public class WeatherService : ReactiveObject
         var codeData = JsonConvert.DeserializeObject<Dictionary<string, WeatherCodeData>>(jsonString);
 
         var entry = codeData[code];
-        
-        switch (isDay)  
+
+        var result = new List<string[]>
         {
-            case 1: 
-                return [entry.day.text, entry.day.icon]; 
-            case 0: 
-                return [entry.night.text, entry.night.icon];
-            default: return null;
-        }
+            new[]
+            {
+                entry.day.text, entry.day.icon
+            },
+            new[]
+            {
+                entry.night.text, entry.night.icon
+            }
+        };
+        return result[isDay];
     }
 
     public async Task<List<List<string>>> LoadWeatherAsync(string city)
@@ -114,11 +118,22 @@ public class WeatherService : ReactiveObject
 
     private string Time12ToTime24(string time)
     {
-        string[] SplittedTime = time.Split(" ")[0].Split(":"); // hours[0], minutes[1]
-        var dict = new Dictionary<string, string>();
-        dict.Add("AM", time);
-        dict.Add("PM", $"{int.Parse(SplittedTime[0])+12}:{SplittedTime[1]}");
-        return dict[time.Split(" ")[1]];
+        string[] parts = time.Split(' ');
+        string[] hm = parts[0].Split(':');
+        int hour = int.Parse(hm[0]);
+        string minute = hm[1];
+        string ampm = parts[1];
+
+        if (ampm == "AM")
+        {
+            if (hour == 12) hour = 0;
+        }
+        else if (ampm == "PM")
+        {
+            if (hour != 12) hour += 12;
+        }
+
+        return $"{hour:D2}:{minute}";
     }
 
     private string GetActualTime(string type, WeatherCurrentData data, int currentTime)

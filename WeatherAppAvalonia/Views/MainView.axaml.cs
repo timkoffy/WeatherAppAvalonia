@@ -43,6 +43,7 @@ public partial class MainView : UserControl
         string sunriseTime = events[1];
         string sunsetTime = events[2];
         
+        Console.WriteLine(sunsetTime);
         ForecastStackPanel.Children.Clear();
         
         for (int i = 0; i < hours.Count; i++)
@@ -53,6 +54,12 @@ public partial class MainView : UserControl
                 continue;
             }
 
+            if (i != 0 && hours[i-1] == sunriseTime && sunriseTime == sunsetTime)
+            {
+                SpawnForecastInStackPanel(sunriseTime, "voshod", "Полярный день", true);
+                continue;
+            }
+            
             if (hours[i] == "00:00")
             {
                 if (i != 0)
