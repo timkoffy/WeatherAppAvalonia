@@ -39,11 +39,11 @@ public class WeatherService : ReactiveObject
         {
             new[]
             {
-                entry.day.text, entry.day.icon
+                entry.night.text, entry.night.icon
             },
             new[]
             {
-                entry.night.text, entry.night.icon
+                entry.day.text, entry.day.icon
             }
         };
         return result[isDay];
