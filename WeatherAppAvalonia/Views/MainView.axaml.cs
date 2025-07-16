@@ -33,6 +33,8 @@ public partial class MainView : UserControl
         this.FindControl<TextBlock>("CurConditionText").Text = weather[1];
         string uri = $"avares://WeatherAppAvalonia/Assets/icons/{weather[2]}.png";
         this.FindControl<Image>("CurConditionIcon").Source = new Bitmap(AssetLoader.Open(new Uri(uri)));
+        
+        
     }
 
     private void CitySearchBox_Result(object sender, SelectionChangedEventArgs e)

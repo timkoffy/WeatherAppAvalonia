@@ -27,13 +27,13 @@ public class WeatherService : ReactiveObject
     public async Task<WeatherCurrentData> GetCurrentWeatherFromIdAsync(string city)
     {
         using var client = new HttpClient();
-        var url = $"{BaseUrl}/current.json?key={ApiKey}&q={city}&aqi=yes";
+        var url = $"{BaseUrl}forecast.json?key={ApiKey}&q={city}&days=2&aqi=no&alerts=no";
         var response = await client.GetStringAsync(url);
         var weather = JsonConvert.DeserializeObject<WeatherCurrentData>(response);
         return weather;
     }
     
-    public async Task<string[]> GetCode(string code, int isDay)
+    public async Task<string[]> GetConditionFromCode(string code, int isDay)
     {
         string jsonString = await File.ReadAllTextAsync("WeatherService/WeatherCodes.json");
         var codeData = JsonConvert.DeserializeObject<Dictionary<string, WeatherCodeData>>(jsonString);
@@ -53,7 +53,24 @@ public class WeatherService : ReactiveObject
     public async Task<string[]> LoadWeatherAsync(string city)
     {
         var data = await GetCurrentWeatherFromIdAsync(city);
-        var data1 = await GetCode(data.current.condition.code, data.current.is_day);
+        var data1 = await GetConditionFromCode(data.current.condition.code, data.current.is_day);
+        
+        var forecastHours = weather.forecast.forecastday[0].hour;
+
+        var hours = new List<string>();
+        var codes = new List<string>();
+        var temps = new List<string>();
+
+        foreach (var h in forecastHours)
+        {
+            string hour = h.Time.Split(' ')[1];
+            hours.Add(hour);
+            
+            codes.Add(h.condition.code);
+            
+            temps.Add($"+{Math.Round(h.TempC)}°");
+        }
+
         
         WeatherInfo = new[]
         {
@@ -71,9 +88,6 @@ public class WeatherService : ReactiveObject
         var response = await client.GetStringAsync(url);
         
         var cityList = JsonConvert.DeserializeObject<List<CitiSearchData>>(response);
-
-        // var nameCountryList = cityList.ToDictionary(c => c.name, c => c.country);
-        // return nameCountryList;
         
         var nameList = cityList.Select(c => c.name).ToList();
         return nameList;
