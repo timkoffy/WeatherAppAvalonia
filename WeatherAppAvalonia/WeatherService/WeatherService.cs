@@ -88,7 +88,7 @@ public class WeatherService : ReactiveObject
 
         var events = new List<string>
         {
-            $"{currentTime}:00",
+            $"{currentTime:D2}:00",
             $"{sunriseTime}",
             $"{sunsetTime}"
         };
