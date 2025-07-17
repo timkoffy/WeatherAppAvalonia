@@ -1,7 +1,6 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:ava="clr-namespace:ScottPlot.Avalonia;assembly=ScottPlot.Avalonia"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:WeatherAppAvalonia.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
@@ -49,8 +48,8 @@
             
           </DockPanel>
           
-          <Border x:Name="ForecastAddition" CornerRadius="6" Background="{DynamicResource ColorSubBoxId}" Width="159" DockPanel.Dock="Right">
-          </Border>
+          <!-- <Border x:Name="ForecastAddition" CornerRadius="6" Background="{DynamicResource ColorSubBoxId}" Width="159" DockPanel.Dock="Right"> -->
+          <!-- </Border> -->
           
         </DockPanel>
         
@@ -61,11 +60,24 @@
           </ScrollViewer>
         </Border>
          
-        <DockPanel x:Name="Block2" DockPanel.Dock="Bottom">
-          <Border CornerRadius="6" Background="{DynamicResource ColorSubBoxId}">
-            <Grid x:Name="testPanel">
-              <ava:AvaPlot x:Name="avaloniaPlot" />
-            </Grid>
+        <DockPanel x:Name="Block2" DockPanel.Dock="Top">
+          <Border Padding="16" CornerRadius="6" Background="{DynamicResource ColorSubBoxId}">
+            <DockPanel>
+              <TextBlock FontSize="32" FontWeight="SemiBold" Text="Саратов, 16 июля 2025" DockPanel.Dock="Top" Margin="0 0 0 10"/>
+              <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*,*,*" DockPanel.Dock="Top" >
+                <TextBlock FontSize="24" Text="По ощущению" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" />
+                <TextBlock FontSize="24" Text="Влажность" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" />
+                <TextBlock FontSize="24" Text="Ветер" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" />
+                <TextBlock FontSize="24" Text="Давление" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" />
+                <TextBlock FontSize="24" Text="Вода" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" />
+                
+                <TextBlock FontSize="24" Text="+24" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" />
+                <TextBlock FontSize="24" Text="53%" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" />
+                <TextBlock FontSize="24" Text="5,3 м/с ЮЖ" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" />
+                <TextBlock FontSize="24" Text="783 мм.рт.ст" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" />
+                <TextBlock FontSize="24" Text="+23" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" />
+              </Grid>
+            </DockPanel>
           </Border>
         </DockPanel>
         

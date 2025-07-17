@@ -20,28 +20,8 @@ public partial class MainView : UserControl
 {
     public MainView()
     {
-        
         InitializeComponent();
         this.Loaded += OnLoaded;
-        DrawPlot();
-        
-    }
-
-    private void DrawPlot()
-    { 
-        int count = 100;
-        double[] xs = new double[count];
-        double[] ys = new double[count];
-
-        for (int i = 0; i < count; i++)
-        {
-            xs[i] = i;
-            ys[i] = Math.Sin(i * 0.1);
-        }
-        
-        avaloniaPlot.Plot.Clear();
-        avaloniaPlot.Plot.Add.Scatter(xs, ys);
-        avaloniaPlot.Refresh();
     }
 
     public async Task BuildMainUIWeatherTask(string city = "Саратов")
@@ -64,6 +44,8 @@ public partial class MainView : UserControl
         string sunsetTime = events[2];
         
         BuildMainForecast(hours, conditionIcons, temps, nowHour, sunriseTime, sunsetTime);
+        
+        
     }
 
     private void CitySearchBox_Result(object sender, SelectionChangedEventArgs e)
@@ -178,5 +160,9 @@ public partial class MainView : UserControl
                 SpawnForecastInStackPanel(hours[i], conditionIcons[i], temps[i]);
             }
         }
+    }
+
+    private void BuildAdditionalWeatherInfoToday()
+    {
     }
 }
