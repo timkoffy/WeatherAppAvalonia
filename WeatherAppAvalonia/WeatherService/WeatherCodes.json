@@ -36,8 +36,8 @@
     "night": { "text": "Замерзающая морось", "icon": "wet-snowy" }
   },
   "1087": {
-    "day": { "text": "Возможны грозы", "icon": "rain-w-lights" },
-    "night": { "text": "Возможны грозы", "icon": "rain-w-lights" }
+    "day": { "text": "Возможны грозы", "icon": "lights" },
+    "night": { "text": "Возможны грозы", "icon": "lights" }
   },
   "1114": {
     "day": { "text": "Метель", "icon": "snowy" },

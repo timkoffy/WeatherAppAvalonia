@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Avalonia;
@@ -12,89 +13,44 @@ using Avalonia.Platform;
 using Avalonia.Threading;
 using WeatherAppAvalonia.ViewModels;
 
+
 namespace WeatherAppAvalonia.Views;
 
 public partial class MainView : UserControl
 {
     public MainView()
     {
-        
         InitializeComponent();
         this.Loaded += OnLoaded;
-        
+    }
+    
+    private async void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        await BuildMainUIWeatherTask();
     }
 
-    private async Task LongRunningTask(string city = "Саратов")
+    public async Task BuildMainUIWeatherTask(string city = "Саратов")
     {
         var _weatherService = new WeatherService.WeatherService();
         var weather = await _weatherService.LoadWeatherAsync(city);
         
-        this.FindControl<TextBlock>("CurTempText").Text = weather[0][0];
-        this.FindControl<TextBlock>("CurConditionText").Text = weather[0][1];
-        string uri = $"avares://WeatherAppAvalonia/Assets/icons/{weather[0][2]}.png";
-        this.FindControl<Image>("CurConditionIcon").Source = new Bitmap(AssetLoader.Open(new Uri(uri)));
-        
         var hours = weather[1];
         var conditionIcons = weather[2];
         var temps = weather[3];
-        
         var events = weather[4];
         string nowHour = events[0];
         string sunriseTime = events[1];
         string sunsetTime = events[2];
+
+        CurTempText.Text = weather[0][0];
+        CurConditionText.Text = weather[0][1];
+        string uri = $"avares://WeatherAppAvalonia/Assets/icons/{weather[0][2]}.png";
+        CurConditionIcon.Source = new Bitmap(AssetLoader.Open(new Uri(uri)));
+        LocationText.Text = weather[0][7];
         
-        Console.WriteLine(sunsetTime);
-        ForecastStackPanel.Children.Clear();
+        BuildMainForecast(hours, conditionIcons, temps, nowHour, sunriseTime, sunsetTime);
         
-        for (int i = 0; i < hours.Count; i++)
-        {
-            if (hours[i] == nowHour)
-            {
-                SpawnForecastInStackPanel("Сейчас", conditionIcons[i], temps[i], true);
-                continue;
-            }
-
-            if (i != 0 && hours[i-1] == sunriseTime && sunriseTime == sunsetTime)
-            {
-                SpawnForecastInStackPanel(sunriseTime, "voshod", "Полярный день", true);
-                continue;
-            }
-            
-            if (hours[i] == "00:00")
-            {
-                if (i != 0)
-                {
-                    var rectangle = new Rectangle
-                    {
-                        Width = 3,
-                        Height = 130,
-                        RadiusX = 1.5,
-                        RadiusY = 1.5,
-                        Fill = SolidColorBrush.Parse("#5060728B")
-                    };
-                    ForecastStackPanel.Children.Add(rectangle);
-                }
-
-                SpawnForecastInStackPanel(hours[i], conditionIcons[i], temps[i]);
-                continue;
-            }
-
-            if (i != 0 && hours[i-1].Split(':')[0] == sunriseTime.Split(':')[0])
-            {
-                SpawnForecastInStackPanel(sunriseTime, "voshod", "Восход", true);
-                SpawnForecastInStackPanel(hours[i], conditionIcons[i], temps[i]);
-                continue;
-            }
-            if (i != 0 &&hours[i-1].Split(':')[0] == sunsetTime.Split(':')[0])
-            {
-                SpawnForecastInStackPanel(sunsetTime, "zakat", "Закат", true);
-                SpawnForecastInStackPanel(hours[i], conditionIcons[i], temps[i]);
-            }
-            else
-            {
-                SpawnForecastInStackPanel(hours[i], conditionIcons[i], temps[i]);
-            }
-        }
+        BuildAdditionalWeatherInfoToday(weather[0][3], weather[0][4], weather[0][5], weather[0][6]);
     }
 
     private void CitySearchBox_Result(object sender, SelectionChangedEventArgs e)
@@ -104,13 +60,8 @@ public partial class MainView : UserControl
             var viewModel = DataContext as MainWindowViewModel;
             viewModel.FinalCityName = selectedCity;
             
-            LongRunningTask(selectedCity);
+            BuildMainUIWeatherTask(selectedCity);
         }
-    }
-    
-    private async void OnLoaded(object sender, RoutedEventArgs e)
-    {
-        await LongRunningTask();
     }
 
     private void SpawnForecastInStackPanel(string time, string weather, string degrees, bool isBold=false)
@@ -152,5 +103,70 @@ public partial class MainView : UserControl
         dockPanel.Children.Add(tempText);
         
         ForecastStackPanel.Children.Add(dockPanel);
+    }
+    
+    private void BuildMainForecast(List<string> hours, List<string> conditionIcons, List<string> temps, string nowHour,
+        string sunriseTime, string sunsetTime)
+    {
+        ForecastStackPanel.Children.Clear();
+
+        for (int i = 0; i < hours.Count; i++)
+        {
+            if (i != 0 && hours[i - 1] == sunriseTime && sunriseTime == sunsetTime)
+            {
+                SpawnForecastInStackPanel(sunriseTime, "voshod", "Полярный день", true);
+                continue;
+            }
+
+            if (hours[i] == nowHour)
+            {
+                SpawnForecastInStackPanel("Сейчас", conditionIcons[i], temps[i], true);
+                continue;
+            }
+
+            if (hours[i] == "00:00")
+            {
+                if (i != 0)
+                {
+                    var rectangle = new Rectangle
+                    {
+                        Width = 3,
+                        Height = 130,
+                        RadiusX = 1.5,
+                        RadiusY = 1.5,
+                        Fill = SolidColorBrush.Parse("#5060728B")
+                    };
+                    ForecastStackPanel.Children.Add(rectangle);
+                }
+
+                SpawnForecastInStackPanel(hours[i], conditionIcons[i], temps[i]);
+                continue;
+            }
+
+            if (i != 0 && hours[i - 1].Split(':')[0] == sunriseTime.Split(':')[0])
+            {
+                SpawnForecastInStackPanel(sunriseTime, "voshod", "Восход", true);
+                SpawnForecastInStackPanel(hours[i], conditionIcons[i], temps[i]);
+                continue;
+            }
+
+            if (i != 0 && hours[i - 1].Split(':')[0] == sunsetTime.Split(':')[0])
+            {
+                SpawnForecastInStackPanel(sunsetTime, "zakat", "Закат", true);
+                SpawnForecastInStackPanel(hours[i], conditionIcons[i], temps[i]);
+            }
+            else
+            {
+                SpawnForecastInStackPanel(hours[i], conditionIcons[i], temps[i]);
+            }
+        }
+    }
+
+    private void BuildAdditionalWeatherInfoToday(string feelslike, string humidity, string wind, string pressure)
+    {
+        FeelsLikeTempText.Text = feelslike;
+        HumidityText.Text = humidity;
+        WindText.Text = wind;
+        PressureText.Text = pressure;
     }
 }
