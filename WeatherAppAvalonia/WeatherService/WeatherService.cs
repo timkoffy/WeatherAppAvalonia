@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using DynamicData.Binding;
 using Newtonsoft.Json;
 using ReactiveUI;
 using WeatherAppAvalonia.Assets;
@@ -37,15 +38,10 @@ public class WeatherService : ReactiveObject
 
         var result = new List<string[]>
         {
-            new[]
-            {
-                entry.night.text, entry.night.icon
-            },
-            new[]
-            {
-                entry.day.text, entry.day.icon
-            }
+            new[] { entry.night.text, entry.night.icon },
+            new[] { entry.day.text, entry.day.icon }
         };
+        
         return result[isDay];
     }
 
@@ -59,6 +55,8 @@ public class WeatherService : ReactiveObject
         
         string sunriseTime = GetActualTime("sunrise", data, currentTime);
         string sunsetTime = GetActualTime("sunset", data, currentTime);
+        string wind = GetFormattedWind(data.current.wind_kph, data.current.wind_dir);
+        string locationInfo = GetLocationInfo(data.current.last_updated, city);
         
         var forecastHours = data.forecast.forecastday[0].hour;
         forecastHours.AddRange(data.forecast.forecastday[1].hour);
@@ -76,23 +74,28 @@ public class WeatherService : ReactiveObject
             string[] condition = await GetConditionFromCode(h.condition.code, h.is_day);
             conditionIcons.Add(condition[1]);
             
-            temps.Add($"+{Math.Round(h.temp_c)}°");
+            temps.Add($"{Math.Round(h.temp_c)}°");
         }
         
         var weatherInfo = new List<string>
         {
-            $"+{Math.Round(data.current.temp_c)}°",
-            data1[0],
-            data1[1]
+            $"{Math.Round(data.current.temp_c)}°", // temperature
+            data1[0], // condition
+            data1[1], // icon
+            $"{Math.Round(data.current.feelslike_c)}°", // feels like temperature
+            $"{data.current.humidity}%", // humidity
+            $"{wind}", // wind
+            $"{Math.Round(data.current.pressure_mb)} мм. рт. ст.", // pressure
+            locationInfo // city name + date
         };
 
         var events = new List<string>
         {
-            $"{currentTime:D2}:00",
-            $"{sunriseTime}",
-            $"{sunsetTime}"
+            $"{currentTime:D2}:00", // current time
+            $"{sunriseTime}", // sunrise time
+            $"{sunsetTime}" // sunset time
         };
-
+        
         var result = new List<List<string>>
         {
             weatherInfo,
@@ -104,7 +107,7 @@ public class WeatherService : ReactiveObject
         return result;
     }
     
-    public async Task<List<string>> GetAllCityNamesAsync(string cityResponse="Аткарск")
+    public async Task<List<string>> GetAllCityNamesAsync(string cityResponse)
     {
         using var client = new HttpClient();
         var url = $"{BaseUrl}search.json?key={ApiKey}&q={cityResponse}";
@@ -151,6 +154,39 @@ public class WeatherService : ReactiveObject
             time = Time12ToTime24(time);
         }
         return time;
+    }
+
+    private string GetFormattedWind(double value_kph, string dir)
+    {
+        var dirs = new Dictionary<string,string>
+        {
+            {"N", "С"},
+            {"NNE", "С"},
+            {"NE", "СВ"},
+            {"ENE", "СВ"},
+            {"E", "В"},
+            {"ESE", "В"},
+            {"SE", "ЮВ"},
+            {"SSE", "ЮВ"},
+            {"S", "Ю"},
+            {"SSW", "Ю"},
+            {"SW", "ЮЗ"},
+            {"WSW", "ЮЗ"},
+            {"W", "З"},
+            {"WNW", "З"},
+            {"NW", "СЗ"},
+            {"NNW", "СЗ"}
+        };
+        double value_mps = value_kph / 3.6;
+        
+        return $"{value_mps:F2} м/с, {dirs[dir]}";
+    }
+
+    private string GetLocationInfo(string lastUpdated, string city)
+    {
+        string[] date = lastUpdated.Split(" ")[0].Split("-");
+        string formattedDate = $"{date[2]}.{date[1]}.{date[0]}";
+        return $"{city}, {formattedDate}";
     }
     
 }

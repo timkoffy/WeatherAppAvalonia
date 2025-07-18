@@ -19,7 +19,17 @@ public class Current
     
     public Condition condition { get; set; }
     
-    public int is_day {get; set;}
+    public int is_day { get; set; }
+    
+    public double wind_kph { get; set; }
+    
+    public string wind_dir { get; set; }
+    
+    public int humidity { get; set; }
+    
+    public double feelslike_c { get; set; }
+    
+    public double pressure_mb { get; set; }
 }
 
 public class Condition
@@ -46,7 +56,7 @@ public class Hour
 
     public ConditionHour condition { get; set; }
     
-    public int is_day {get; set;}
+    public int is_day { get; set; }
 }
 
 public class ConditionHour {

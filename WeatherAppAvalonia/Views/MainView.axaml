@@ -56,26 +56,27 @@
         <Border x:Name="ForecastToday" Height="177" DockPanel.Dock="Top" Margin="0 0 0 16" Padding="16" CornerRadius="6" Background="{DynamicResource ColorSubBoxId}">
           <ScrollViewer HorizontalScrollBarVisibility="Hidden"
                         VerticalScrollBarVisibility="Disabled">
-            <StackPanel x:Name="ForecastStackPanel" Orientation="Horizontal" Spacing="26" />
+            <StackPanel x:Name="ForecastStackPanel" Orientation="Horizontal" Spacing="23" />
           </ScrollViewer>
         </Border>
          
         <DockPanel x:Name="Block2" DockPanel.Dock="Top">
           <Border Padding="16" CornerRadius="6" Background="{DynamicResource ColorSubBoxId}">
             <DockPanel>
-              <TextBlock FontSize="32" FontWeight="SemiBold" Text="Саратов, 16 июля 2025" DockPanel.Dock="Top" Margin="0 0 0 10"/>
-              <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*,*,*" DockPanel.Dock="Top" >
+              <TextBlock x:Name="LocationText" FontSize="32" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="0 0 0 10"/>
+              <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*,*" DockPanel.Dock="Top" >
                 <TextBlock FontSize="24" Text="По ощущению" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" />
                 <TextBlock FontSize="24" Text="Влажность" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" />
                 <TextBlock FontSize="24" Text="Ветер" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" />
                 <TextBlock FontSize="24" Text="Давление" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" />
-                <TextBlock FontSize="24" Text="Вода" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" />
                 
-                <TextBlock FontSize="24" Text="+24" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" />
-                <TextBlock FontSize="24" Text="53%" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" />
-                <TextBlock FontSize="24" Text="5,3 м/с ЮЖ" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" />
-                <TextBlock FontSize="24" Text="783 мм.рт.ст" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" />
-                <TextBlock FontSize="24" Text="+23" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" />
+                <TextBlock x:Name="FeelsLikeTempText" FontSize="24" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" />
+                <TextBlock x:Name="HumidityText" FontSize="24" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" />
+                <TextBlock x:Name="WindText" FontSize="24" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" />
+                <TextBlock x:Name="PressureText" FontSize="24" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" />
+                
+                <TextBlock x:Name="SunriseTimeText" FontSize="24" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" />
+                <TextBlock x:Name="SunsetTimeText" FontSize="24" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" />
               </Grid>
             </DockPanel>
           </Border>

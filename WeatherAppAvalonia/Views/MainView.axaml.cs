@@ -23,29 +23,34 @@ public partial class MainView : UserControl
         InitializeComponent();
         this.Loaded += OnLoaded;
     }
+    
+    private async void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        await BuildMainUIWeatherTask();
+    }
 
     public async Task BuildMainUIWeatherTask(string city = "Саратов")
     {
         var _weatherService = new WeatherService.WeatherService();
         var weather = await _weatherService.LoadWeatherAsync(city);
-
-        this.FindControl<TextBlock>("CurTempText").Text = weather[0][0];
-        this.FindControl<TextBlock>("CurConditionText").Text = weather[0][1];
-        string uri = $"avares://WeatherAppAvalonia/Assets/icons/{weather[0][2]}.png";
-        this.FindControl<Image>("CurConditionIcon").Source = new Bitmap(AssetLoader.Open(new Uri(uri)));
-
+        
         var hours = weather[1];
         var conditionIcons = weather[2];
         var temps = weather[3];
-
         var events = weather[4];
         string nowHour = events[0];
         string sunriseTime = events[1];
         string sunsetTime = events[2];
+
+        CurTempText.Text = weather[0][0];
+        CurConditionText.Text = weather[0][1];
+        string uri = $"avares://WeatherAppAvalonia/Assets/icons/{weather[0][2]}.png";
+        CurConditionIcon.Source = new Bitmap(AssetLoader.Open(new Uri(uri)));
+        LocationText.Text = weather[0][7];
         
         BuildMainForecast(hours, conditionIcons, temps, nowHour, sunriseTime, sunsetTime);
         
-        
+        BuildAdditionalWeatherInfoToday(weather[0][3], weather[0][4], weather[0][5], weather[0][6]);
     }
 
     private void CitySearchBox_Result(object sender, SelectionChangedEventArgs e)
@@ -57,11 +62,6 @@ public partial class MainView : UserControl
             
             BuildMainUIWeatherTask(selectedCity);
         }
-    }
-    
-    private async void OnLoaded(object sender, RoutedEventArgs e)
-    {
-        await BuildMainUIWeatherTask();
     }
 
     private void SpawnForecastInStackPanel(string time, string weather, string degrees, bool isBold=false)
@@ -162,7 +162,11 @@ public partial class MainView : UserControl
         }
     }
 
-    private void BuildAdditionalWeatherInfoToday()
+    private void BuildAdditionalWeatherInfoToday(string feelslike, string humidity, string wind, string pressure)
     {
+        FeelsLikeTempText.Text = feelslike;
+        HumidityText.Text = humidity;
+        WindText.Text = wind;
+        PressureText.Text = pressure;
     }
 }
